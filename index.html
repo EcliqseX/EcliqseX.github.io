@@ -68,11 +68,9 @@
       }
     }
 
-    /* Spotify Icon Button */
-    .spotify-button {
+    /* Icon buttons */
+    .icon-button {
       position: fixed;
-      bottom: 20px;
-      left: 20px;
       width: 40px;
       height: 40px;
       cursor: pointer;
@@ -80,13 +78,24 @@
       transition: transform 0.3s ease;
     }
 
-    .spotify-button img {
+    .icon-button img {
       width: 100%;
       height: 100%;
+      border-radius: 10px;
     }
 
-    .spotify-button:hover {
+    .icon-button:hover {
       transform: scale(1.1);
+    }
+
+    .spotify-button {
+      bottom: 20px;
+      left: 20px;
+    }
+
+    .likes-button {
+      bottom: 20px;
+      right: 20px;
     }
   </style>
 </head>
@@ -97,15 +106,22 @@
   </div>
 
   <div class="content">
-    <p>[ stuff ]</p>
+    <p>[ more stuff goes here 👇 ]</p>
   </div>
 
-  <!-- Spotify Icon as Link -->
+  <!-- Spotify Button -->
   <a href="https://open.spotify.com/playlist/6KujxkaK2Q0Dm2Vfpl4Ec4" 
      target="_blank" 
-     class="spotify-button" 
-     title="playlist">
+     class="icon-button spotify-button" 
+     title="Play my playlist on Spotify">
     <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify">
+  </a>
+
+  <!-- Likes Button -->
+  <a href="likes.html" 
+     class="icon-button likes-button" 
+     title="likes">
+    <img src="https://i.pinimg.com/736x/76/21/30/762130da45a6cc2aaa2f2fc0b20b43b6.jpg" alt="Likes">
   </a>
 </body>
 </html>
