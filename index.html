@@ -26,7 +26,7 @@
       transform: translate(-50%, -50%);
       text-align: center;
       opacity: 0;
-      animation: fadeIn 1.5s ease forwards, moveUp 1s ease-in-out 2s forwards;
+      animation: fadeIn 1.5s ease forwards, moveUp 2.5s ease-in-out 2s forwards;
     }
 
     h1 {
@@ -47,16 +47,19 @@
 
     @keyframes moveUp {
       to {
-        top: 60px;
+        top: 30%;
         transform: translateX(-50%);
       }
     }
 
     .content {
-      margin-top: 150px;
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       text-align: center;
       opacity: 0;
-      animation: contentFadeIn 1s ease 3s forwards;
+      animation: contentFadeIn 1s ease 4.5s forwards;
     }
 
     @keyframes contentFadeIn {
@@ -69,12 +72,11 @@
 <body>
   <div class="container">
     <h1>e c l i p s e</h1>
-    <p>"always tired"</p>
+    <p>"tired as always"</p>
   </div>
 
   <div class="content">
-    <!-- Add your links, images, etc. here later -->
-    <p>[ things ]</p>
+    <p>[ stuff ]</p>
   </div>
 </body>
 </html>
