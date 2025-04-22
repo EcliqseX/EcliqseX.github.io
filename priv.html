@@ -36,14 +36,15 @@
     textarea {
       width: 90%;
       max-width: 800px;
-      height: 70vh;
       background-color: #111;
       color: #eee;
       border: 1px solid #333;
       border-radius: 10px;
       padding: 20px;
       font-size: 1rem;
-      resize: vertical;
+      resize: none;
+      overflow: hidden;
+      margin-bottom: 20px;
       outline: none;
     }
 
@@ -54,7 +55,23 @@
 </head>
 <body>
   <h1>depressed gang</h1>
-  <textarea placeholder="l/h realationship with bm tf like stop giving me mixed signals pysc and philo are pain. do i need to suffer through this? a human can only take so much. the irony and misogyny."></textarea>
+  <textarea placeholder="l/h relationship with bm tf like stop giving me mixed signals psych and philo are pain. do i need to suffer through this? a human can only take so much. the irony and misogyny."></textarea>
   <textarea placeholder="teenage life. you should know better. i expected more"></textarea>
+  <textarea placeholder="silent thoughts..."></textarea>
+  <textarea placeholder="do u think about me like i think about you?"></textarea>
+
+  <script>
+    function autoResize(textarea) {
+      textarea.style.height = "auto";
+      textarea.style.height = textarea.scrollHeight + "px";
+    }
+
+    document.querySelectorAll("textarea").forEach((ta) => {
+      autoResize(ta);
+      ta.addEventListener("input", () => autoResize(ta));
+    });
+  </script>
 </body>
 </html>
+
+
