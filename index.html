@@ -68,43 +68,37 @@
       }
     }
 
-    .icon-button {
+    /* Buttons container for easier control */
+    .buttons-container {
       position: fixed;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
       z-index: 100;
-      transition: transform 0.3s ease;
     }
 
-    .icon-button img {
-      width: 100%;
-      height: 100%;
-      border-radius: 10px;
+    .icon-button {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      border-radius: 8px;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .icon-button img, .icon-button svg {
+      width: 36px;
+      height: 36px;
+      display: block;
+      filter: brightness(0) invert(1); /* white icons */
     }
 
     .icon-button:hover {
-      transform: scale(1.1);
-    }
-
-    .spotify-button {
-      bottom: 20px;
-      left: 20px;
-    }
-
-    .priv-button {
-      bottom: 20px;
-      left: 70px; 
-    }
-
-    .proxy-button {
-      bottom: 20px;
-      left: 40px; 
-    }
-
-    .likes-button {
-      bottom: 20px;
-      right: 20px;
+      transform: scale(1.2);
+      filter: brightness(1.2) drop-shadow(0 0 4px #0f0);
     }
   </style>
 </head>
@@ -118,31 +112,41 @@
     <p>too many ideas, too little time</p>
   </div>
 
-  
-  <a href="https://open.spotify.com/playlist/6KujxkaK2Q0Dm2Vfpl4Ec4" 
-     target="_blank" 
-     class="icon-button spotify-button" 
-     title="my playlist on Spotify">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify">
-  </a>
+  <div class="buttons-container">
+    <a href="https://open.spotify.com/playlist/6KujxkaK2Q0Dm2Vfpl4Ec4" 
+       target="_blank" 
+       class="icon-button" 
+       title="my playlist on Spotify">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify">
+    </a>
 
-  
-  <a href="priv.html" 
-     class="icon-button priv-button" 
-     title="insanity">
-    <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="i know its you zk">
-  </a>
-
-  <a href="likes.html" 
-     class="icon-button likes-button" 
-     title="likes">
-    <img src="https://i.pinimg.com/736x/76/21/30/762130da45a6cc2aaa2f2fc0b20b43b6.jpg" alt="Likes">
-  </a>
+    <a href="priv.html" 
+       class="icon-button" 
+       title="insanity">
+      <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="insanity">
+    </a>
 
     <a href="e.html"
-     class="icon-button proxy-button" 
-     title="proxy">
-    <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="glint">
-  </a>
+       class="icon-button" 
+       title="proxy">
+      <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="glint">
+    </a>
+
+    <a href="likes.html" 
+       class="icon-button" 
+       title="likes">
+      <img src="https://i.pinimg.com/736x/76/21/30/762130da45a6cc2aaa2f2fc0b20b43b6.jpg" alt="Likes">
+    </a>
+
+    <!-- New Bookmark Button -->
+    <a href="bookmark.html" 
+       class="icon-button" 
+       title="Bookmarks">
+      <!-- Simple Star SVG Icon -->
+      <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+      </svg>
+    </a>
+  </div>
 </body>
 </html>
