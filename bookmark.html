@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bookmarks</title>
+  <style>
+    /* Reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+      overflow-x: hidden;
+    }
+
+    /* Animated heading */
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeInMoveDown 1.5s ease forwards;
+      text-align: center;
+      user-select: none;
+    }
+
+    @keyframes fadeInMoveDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Bookmark container */
+    .bookmark-box {
+      background: rgba(255 255 255 / 0.05);
+      border: 1px solid rgba(255 255 255 / 0.15);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+      animation: fadeIn 2s ease 1s forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .bookmark-box ul {
+      list-style: none;
+    }
+
+    .bookmark-box li {
+      margin-bottom: 1rem;
+    }
+
+    .bookmark-box a {
+      color: #00ff9d;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    .bookmark-box a:hover,
+    .bookmark-box a:focus {
+      color: #00cc7a;
+      text-decoration: underline;
+    }
+
+    /* Back button */
+    .back-button {
+      align-self: flex-start;
+      margin-bottom: 2rem;
+      background: none;
+      border: 2px solid #00ff9d;
+      color: #00ff9d;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+
+    .back-button:hover,
+    .back-button:focus {
+      background-color: #00ff9d;
+      color: #000;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <button class="back-button" onclick="history.back()" aria-label="Go back to home">← Back</button>
+
+  <h1>Bookmarks</h1>
+
+  <div class="bookmark-box" role="region" aria-label="List of bookmarks">
+    <ul>
+      <li><a href="https://docs.google.com/document/d/1HxOlWG4Txe6yZbflb4dupC0Vv07KsbMcerRKqa5sckE/edit?usp=sharing" target="_blank" rel="noopener">Bookmark Hub</a></li>
+      <li><a href="https://ubghub.org" target="_blank" rel="noopener">UBGHub</a></li>
+    </ul>
+  </div>
+</body>
+</html>
