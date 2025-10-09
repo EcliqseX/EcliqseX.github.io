@@ -13,6 +13,7 @@
 ༄˖°.🪐.ೃ࿔*:･༄˖°.🪐.ೃ࿔*:･
 
 https://ecliqsex.github.io/
+fyi still a wip
 
 ⠀༄˖°.🪐.ೃ࿔*:･༄˖°.🪐.ೃ࿔*:･
 
