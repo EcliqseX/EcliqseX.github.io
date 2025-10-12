@@ -1,1 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>my websites</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 1.5s ease forwards, moveUp 1.5s ease-in-out 2s forwards;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .buttons-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      opacity: 0;
+      animation: fadeInButtons 1s ease 3.5s forwards;
+    }
+
+    .web-button {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      padding: 12px 24px;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      width: 240px;
+      text-align: center;
+    }
+
+    .web-button:hover {
+      background-color: white;
+      color: black;
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #0f0;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes moveUp {
+      to {
+        top: 30%;
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes fadeInButtons {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>my websites</h1>
+    <div class="buttons-wrapper">
+      <!-- Replace the href links with your actual website URLs -->
+      <a href="https://example.com" target="_blank" class="web-button">Portfolio</a>
+      <a href="https://github.com" target="_blank" class="web-button">GitHub</a>
+      <a href="https://behance.net" target="_blank" class="web-button">Behance</a>
+      <a href="https://yourblog.com" target="_blank" class="web-button">Blog</a>
+    </div>
+  </div>
+</body>
+</html>
 
