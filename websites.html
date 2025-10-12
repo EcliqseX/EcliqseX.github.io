@@ -40,7 +40,7 @@
       gap: 20px;
       align-items: center;
       opacity: 0;
-      animation: fadeInButtons 1s ease 3.5s forwards;
+      animation: riseUp 1s ease 3.5s forwards;
     }
 
     .web-button {
@@ -63,6 +63,32 @@
       box-shadow: 0 0 10px #0f0;
     }
 
+    /* Back button styling */
+    .back-button {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      opacity: 0;
+      animation: fadeInBack 1s ease 4.5s forwards;
+    }
+
+    .back-button:hover {
+      background-color: white;
+      color: black;
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #0f0;
+    }
+
+    /* Animations */
     @keyframes fadeIn {
       to {
         opacity: 1;
@@ -76,7 +102,18 @@
       }
     }
 
-    @keyframes fadeInButtons {
+    @keyframes riseUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInBack {
       to {
         opacity: 1;
       }
@@ -87,13 +124,14 @@
   <div class="container">
     <h1>my websites</h1>
     <div class="buttons-wrapper">
-      <!-- Replace the href links with your actual website URLs -->
       <a href="https://slidesgen.lovable.app/" target="_blank" class="web-button">Slides Generator AI</a>
-      <a href="https://gooxe.lovable.app/" target="_blank" class="web-button">Study App </a>
+      <a href="https://gooxe.lovable.app/" target="_blank" class="web-button">Gooxe</a>
       <a href="https://ecliqsex.github.io/" target="_blank" class="web-button">Behance</a>
       <a href="https://ecards.loveable.app/" target="_blank" class="web-button">Ecard Generator AI</a>
     </div>
   </div>
+
+  <!-- ✅ Back Button -->
+  <a href="index.html" class="back-button">← back to home</a>
 </body>
 </html>
-
