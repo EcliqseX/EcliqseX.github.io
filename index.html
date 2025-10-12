@@ -68,7 +68,6 @@
       }
     }
 
-    /* Buttons container for easier control */
     .buttons-container {
       position: fixed;
       bottom: 20px;
@@ -77,8 +76,6 @@
       display: flex;
       gap: 20px;
       z-index: 100;
-
-      /* Start hidden and fade in after text animation finishes */
       opacity: 0;
       animation: buttonsFadeIn 1s ease forwards;
       animation-delay: 4.5s;
@@ -140,7 +137,6 @@
     <a href="e.html"
        class="icon-button" 
        title="proxy" aria-label="Computer">
-      <!-- Computer SVG Icon -->
       <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" width="36" height="36" aria-hidden="true" focusable="false">
         <path d="M20 18H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1zM4 7v7h16V7H4zm9 10h3v1h-8v-1h3l-2-2h6l-2 2z"/>
       </svg>
@@ -149,7 +145,6 @@
     <a href="likes.html" 
        class="icon-button" 
        title="likes" aria-label="Likes">
-      <!-- White heart SVG -->
       <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" width="36" height="36">
         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09
           C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
@@ -159,11 +154,27 @@
     <a href="bookmark.html" 
        class="icon-button" 
        title="Bookmarks">
-      <!-- Simple Star SVG Icon -->
       <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
         <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
       </svg>
     </a>
-  </div>
-</body>
-</html>
+
+    <!-- ✅ NEW Website button -->
+    <a href="websites.html"
+       class="icon-button"
+       title="websites">
+      <!-- Globe / Website icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" width="36" height="36" aria-hidden="true" focusable="false">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 
+                 10-4.48 10-10S17.52 2 12 2zm6.93 
+                 6H17.1a15.08 15.08 0 0 0-2.16-4.36A8.014 
+                 8.014 0 0 1 18.93 8zM12 4c.84 0 2.65 
+                 2.28 3.19 6h-6.38C9.35 6.28 11.16 
+                 4 12 4zM4.26 16a7.963 7.963 0 0 1 0-8h3.42a17.1 
+                 17.1 0 0 0 0 8H4.26zM5.07 16h2.03a15.08 
+                 15.08 0 0 0 2.16 4.36A8.014 8.014 0 0 1 
+                 5.07 16zM12 20c-.84 0-2.65-2.28-3.19-6h6.38C14.65 
+                 17.72 12.84 20 12 20zm2.74.36A15.08 
+                 15.08 0 0 0 16.9 16h2.03a8.014 8.014 0 0 1-4.19 
+                 4.36zM17.32 14a17.1 17.1 0 0 0 0-4h3.42a7.963 
+                 7.963 0 0 1 0 4h-3.42z
