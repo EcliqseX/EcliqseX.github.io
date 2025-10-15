@@ -63,7 +63,7 @@
       box-shadow: 0 0 10px #0f0;
     }
 
-    /* Back button styling */
+    /* ✅ Back button styling (fixed) */
     .back-button {
       position: fixed;
       bottom: 20px;
@@ -76,16 +76,15 @@
       border-radius: 8px;
       text-decoration: none;
       font-size: 1rem;
-      transition: all 0.3s ease;
+      transition: box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
       opacity: 0;
       animation: fadeInBack 1s ease 3.2s forwards;
     }
 
     .back-button:hover {
-      background-color: white;
-      color: black;
-      transform: scale(1.05);
-      box-shadow: 0 0 10px #0f0;
+      background-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 12px #0f0;
+      color: #0f0;
     }
 
     /* Animations */
