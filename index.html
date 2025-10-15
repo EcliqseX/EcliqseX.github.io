@@ -19,6 +19,7 @@
       overflow: hidden;
     }
 
+    /* 🌀 Faster fade + move animation */
     .container {
       position: absolute;
       top: 50%;
@@ -26,7 +27,7 @@
       transform: translate(-50%, -50%);
       text-align: center;
       opacity: 0;
-      animation: fadeIn 1.5s ease forwards, moveUp 1.5s ease-in-out 2s forwards;
+      animation: fadeIn 1s ease forwards, moveUp 1s ease-in-out 1s forwards;
     }
 
     h1 {
@@ -52,6 +53,7 @@
       }
     }
 
+    /* Content appears sooner and faster */
     .content {
       position: absolute;
       top: 60%;
@@ -59,7 +61,7 @@
       transform: translate(-50%, -50%);
       text-align: center;
       opacity: 0;
-      animation: contentFadeIn 1s ease 3.5s forwards;
+      animation: contentFadeIn 0.8s ease 2s forwards;
     }
 
     @keyframes contentFadeIn {
@@ -68,6 +70,7 @@
       }
     }
 
+    /* Buttons fade in earlier and faster */
     .buttons-container {
       position: fixed;
       bottom: 20px;
@@ -77,8 +80,8 @@
       gap: 20px;
       z-index: 100;
       opacity: 0;
-      animation: buttonsFadeIn 1s ease forwards;
-      animation-delay: 4.5s;
+      animation: buttonsFadeIn 0.8s ease forwards;
+      animation-delay: 2.8s;
     }
 
     @keyframes buttonsFadeIn {
@@ -94,14 +97,14 @@
       justify-content: center;
       padding: 6px;
       border-radius: 8px;
-      transition: transform 0.3s ease, filter 0.3s ease;
+      transition: transform 0.25s ease, filter 0.25s ease;
     }
 
     .icon-button img, .icon-button svg {
       width: 36px;
       height: 36px;
       display: block;
-      filter: brightness(0) invert(1); /* white icons */
+      filter: brightness(0) invert(1);
     }
 
     .icon-button:hover {
@@ -167,3 +170,6 @@
               10-4.48 10-10S17.52 2 12 2zm0 2c1.16 0 2.89 2.28 3.43 6h-6.86C9.11 6.28 10.84 4 12 4zm-7.74 4h3.42c-.11.64-.18 1.31-.22 2H4.26c.21-.7.52-1.36.93-2zm-.93 4h3.2c.04.69.11 1.36.22 2H4.26a7.963 7.963 0 0 1 0-2zm.93 4h3.42c.11.64.26 1.28.44 1.89-.97-.67-1.78-1.5-2.38-2.46-.19-.3-.34-.62-.48-.95zm7.74 4c-1.16 0-2.89-2.28-3.43-6h6.86c-.54 3.72-2.27 6-3.43 6zm2.48-1.11c.18-.61.33-1.25.44-1.89h3.42a8.014 8.014 0 0 1-3.86 1.89zm.77-4.89c.11-.64.18-1.31.22-2h3.2a7.963 7.963 0 0 1 0 2h-3.42zm.22-4c-.04-.69-.11-1.36-.22-2h3.42a7.963 7.963 0 0 1 .93 2h-3.2zm-.77-4.89A8.014 8.014 0 0 1 19.74 8h-3.42c-.11-.64-.26-1.28-.44-1.89z"/>
    </svg>
 </a>
+  </div>
+</body>
+</html>
