@@ -21,7 +21,7 @@
 
     .container {
       position: absolute;
-      top: 30%;
+      top: 45%; /* ⬅️ moved down from 30% */
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
@@ -87,7 +87,6 @@
       transform: translateY(0);
     }
 
-    /* ✅ Back button styling */
     .back-button {
       position: fixed;
       bottom: 20px;
@@ -111,33 +110,18 @@
       color: #0f0;
     }
 
-    /* Animations */
     @keyframes riseUpFast {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes riseUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes fadeInBack {
-      to {
-        opacity: 1;
-      }
+      to { opacity: 1; }
     }
   </style>
 </head>
@@ -172,12 +156,11 @@
 
       <div class="button-group">
         <a href="https://typefloww.lovable.app/" target="_blank" class="web-button">TypeFlow</a>
-        <p class="description">Upload PDFs and Word docs — typeing test off the words directly from them.</p>
+        <p class="description">Upload PDFs and Word docs — typing test from your files.</p>
       </div>
     </div>
   </div>
 
-  <!-- ✅ Back Button -->
   <a href="index.html" class="back-button">← back to home</a>
 </body>
 </html>
