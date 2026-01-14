@@ -1,201 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>lost in transit</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lost in transit</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: radial-gradient(circle at top, #080808, #000);
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 280vh;
+}
 
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      height: 100vh;
-      overflow: hidden;
-    }
+/* ===== HERO ===== */
+.hero {
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 1.2s ease forwards;
+  transition: opacity 0.6s ease;
+  z-index: 10;
+}
 
-    /* 🌀 Faster fade + move animation */
-    .container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      opacity: 0;
-      animation: fadeIn 1s ease forwards, moveUp 1s ease-in-out 1s forwards;
-    }
+.hero.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
 
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
+.hero h1 {
+  font-size: 3rem;
+  letter-spacing: 0.4rem;
+}
 
-    p {
-      font-size: 1.2rem;
-      color: #aaa;
-    }
+.hero p { color:#aaa; margin-top:10px; }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
+/* ===== BACKGROUND OBJECTS ===== */
+.moon, .heart {
+  position: fixed;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  opacity: 0;
+}
 
-    @keyframes moveUp {
-      to {
-        top: 30%;
-        transform: translateX(-50%);
-      }
-    }
+.moon {
+  width: 420px;
+  height: 420px;
+  bottom: -300px;
+  left: -300px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffffffcc, #cfcfcf88 45%, #88888833 65%, transparent 72%);
+  filter: blur(0.6px);
+}
 
-    /* Content appears sooner and faster */
-    .content {
-      position: absolute;
-      top: 60%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      opacity: 0;
-      animation: contentFadeIn 0.8s ease 2s forwards;
-    }
+.heart {
+  width: 300px;
+  height: 300px;
+  bottom: -260px;
+  left: -260px;
+}
 
-    @keyframes contentFadeIn {
-      to {
-        opacity: 1;
-      }
-    }
+.heart::before,
+.heart::after {
+  content:"";
+  position: absolute;
+  width:150px;
+  height:240px;
+  background: radial-gradient(circle at top,#ff6b6bcc,#ff3b3b55);
+  border-radius:150px 150px 0 0;
+  top:0;
+}
+.heart::before { left:150px; transform: rotate(-45deg); transform-origin: 0 100%; }
+.heart::after { left:0; transform: rotate(45deg); transform-origin: 100% 100%; }
 
-    /* Buttons fade in earlier and faster */
-    .buttons-container {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 20px;
-      z-index: 100;
-      opacity: 0;
-      animation: buttonsFadeIn 0.8s ease forwards;
-      animation-delay: 2.8s;
-    }
+/* ===== SECTIONS ===== */
+.section {
+  text-align:center;
+  padding:100px 20px;
+  opacity:0;
+  transition: opacity 0.6s ease;
+}
 
-    @keyframes buttonsFadeIn {
-      to {
-        opacity: 1;
-      }
-    }
+.section.visible { opacity:1; }
 
-    .icon-button {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6px;
-      border-radius: 8px;
-      transition: transform 0.25s ease, filter 0.25s ease;
-    }
+.section h2 { font-size:2rem; margin-bottom:16px; }
+.section p { max-width:620px; margin:auto; color:#ccc; }
 
-    .icon-button img,
-    .icon-button svg {
-      width: 40px;
-      height: 40px;
-      display: block;
-      filter: brightness(0) invert(1);
-      aspect-ratio: 1 / 1;
-    }
+#about { margin-top: 65vh; }
+#likes { margin-top: 30vh; }
 
-    /* Fix specifically for the computer icon */
-    .icon-button svg.computer-icon {
-      width: 42px;
-      height: auto;
-      padding: 2px;
-    }
-
-    .icon-button:hover {
-      transform: scale(1.2);
-      filter: brightness(1.2) drop-shadow(0 0 4px #0f0);
-    }
-  </style>
+@keyframes fadeIn { to { opacity:1; } }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>e c l i p s e</h1>
-    <p>animator | artist | gamer</p>
-  </div>
 
-  <div class="content">
-    <p>too many ideas, too little time</p>
-  </div>
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h1>e c l i p s e</h1>
+  <p>animator | artist | gamer</p>
+</div>
 
-  <div class="buttons-container">
-    <a href="https://open.spotify.com/playlist/6KujxkaK2Q0Dm2Vfpl4Ec4" 
-       target="_blank" 
-       class="icon-button" 
-       title="my playlist on Spotify">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify">
-    </a>
+<!-- BACKGROUND OBJECTS -->
+<div class="moon" id="moon"></div>
+<div class="heart" id="heart"></div>
 
-    <a href="priv.html" 
-       class="icon-button" 
-       title="insanity">
-      <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="insanity">
-    </a>
+<!-- ABOUT -->
+<section class="section" id="about">
+  <h2>about me</h2>
+  <p>
+    animator, artist, and gamer who enjoys experimenting with motion, visuals, and strange concepts.
+  </p>
+</section>
 
-    <a href="e.html"
-       class="icon-button" 
-       title="proxy" aria-label="Computer">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 28 24" class="computer-icon" aria-hidden="true" focusable="false">
-        <path d="M22 18H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1zM6 6v8h16V6H6zm8 10h3v1h-6v-1h3l-2-2h4l-2 2z"/>
-      </svg>
-    </a>
+<!-- LIKES / INTERESTS -->
+<section class="section" id="likes">
+  <h2>likes & interests</h2>
+  <p>
+    animation, gaming, sound design, visual effects, experimenting with code, and interactive storytelling.
+  </p>
+</section>
 
-    <a href="likes.html" 
-       class="icon-button" 
-       title="likes" aria-label="Likes">
-      <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" width="36" height="36">
-        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
-          2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09
-          C13.09 3.81 14.76 3 16.5 3 
-          19.58 3 22 5.42 22 8.5
-          c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-      </svg>
-    </a>
-    
-    <a href="bookmark.html" 
-       class="icon-button" 
-       title="Bookmarks">
-      <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24
-          l-7.19-.61L12 2 9.19 8.63 2 9.24
-          l5.46 4.73L5.82 21z"/>
-      </svg>
-    </a>
+<script>
+const hero = document.getElementById("hero");
+const moon = document.getElementById("moon");
+const heart = document.getElementById("heart");
+const about = document.getElementById("about");
+const likes = document.getElementById("likes");
 
-    <a href="websites.html"
-       class="icon-button"
-       title="websites">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" width="36" height="36" aria-hidden="true" focusable="false">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 
-        10 10 10-4.48 10-10S17.52 2 12 2zm0 2
-        c1.16 0 2.89 2.28 3.43 6h-6.86C9.11 6.28
-        10.84 4 12 4zm-7.74 4h3.42c-.11.64-.18
-        1.31-.22 2H4.26c.21-.7.52-1.36.93-2zm-.93
-        4h3.2c.04.69.11 1.36.22 2H4.26a7.963 7.963
-        0 0 1 0-2zm.93 4h3.42c.11.64.26 1.28.44
-        1.89-.97-.67-1.78-1.5-2.38-2.46-.19-.3-.34-.62-.48-.95zm7.74
-        4c-1.16 0-2.89-2.28-3.43-6h6.86c-.54
-        3.72-2.27 6-3.43 6zm2.48-1.11c.18-.61.33-1.25.44-1.89h3.42a8.014
-        8.014 0 0 1-3.86 1.89zm.77-4.89c.11-.64.18-1.31.22-2h3.2a7.963
-        7.963 0 0 1 0 2h-3.42zm.22-4c-.04-.69-.11-1.36-.22-2h3.42a7.963
-        7.963 0 0 1 .93 2h-3.2zm-.77-4.89A8.014
-        8.014 0 0 1 19.74 8h-3.42c-.11-.64-.26-1.28-.44-1.89z"/>
-      </svg>
-    </a>
-  </div>
+window.addEventListener("scroll", () => {
+  const y = window.scrollY;
+
+  // HERO fades out immediately after scrolling down 50px
+  if (y > 50) {
+    hero.classList.add("hidden");
+  } else {
+    hero.classList.remove("hidden");
+  }
+
+  // MOON follows scroll for about section
+  if (y > 100 && y < 600) {
+    moon.style.opacity = "0.75";
+    moon.style.transform = `translate(${y * 0.8}px, ${-y * 0.6}px)`;
+  } else {
+    moon.style.opacity = "0";
+    moon.style.transform = "translate(0,0)";
+  }
+
+  // ABOUT fades in/out
+  if (y > 200 && y < 650) {
+    about.classList.add("visible");
+  } else {
+    about.classList.remove("visible");
+  }
+
+  // HEART for likes section
+  if (y > 700 && y < 1150) {
+    heart.style.opacity = "0.7";
+    heart.style.transform = `translate(${(y - 700)}px, ${-(y - 700) * 0.6}px)`;
+  } else {
+    heart.style.opacity = "0";
+    heart.style.transform = "translate(0,0)";
+  }
+
+  // LIKES fades in/out
+  if (y > 760 && y < 1250) {
+    likes.classList.add("visible");
+  } else {
+    likes.classList.remove("visible");
+  }
+});
+</script>
+
 </body>
 </html>
