@@ -6,6 +6,7 @@
 <title>lost in transit</title>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
+
 body {
   background: radial-gradient(circle at top, #080808, #000);
   color: #fff;
@@ -22,7 +23,7 @@ body {
   text-align: center;
   opacity: 0;
   animation: fadeIn 1.2s ease forwards;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.8s ease;
   z-index: 10;
 }
 
@@ -41,38 +42,41 @@ body {
 /* ===== BACKGROUND OBJECTS ===== */
 .moon, .heart {
   position: fixed;
-  transition: transform 0.6s ease, opacity 0.6s ease;
+  transition: transform 0.8s ease, opacity 0.8s ease;
   opacity: 0;
 }
 
 .moon {
-  width: 420px;
-  height: 420px;
-  bottom: -300px;
-  left: -300px;
+  width: 1260px;  /* 3x bigger */
+  height: 1260px;
+  bottom: -500px;  /* higher */
+  left: -500px;
   border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, #ffffffcc, #cfcfcf88 45%, #88888833 65%, transparent 72%);
   filter: blur(0.6px);
+  box-shadow: 0 0 150px rgba(255,255,255,0.08);
+  z-index: 1;
 }
 
 .heart {
-  width: 300px;
-  height: 300px;
-  bottom: -260px;
-  left: -260px;
+  width: 600px;   /* bigger */
+  height: 600px;
+  bottom: -200px;  /* higher */
+  left: -300px;
+  z-index: 1;
 }
 
 .heart::before,
 .heart::after {
   content:"";
   position: absolute;
-  width:150px;
-  height:240px;
+  width:300px;
+  height:480px;
   background: radial-gradient(circle at top,#ff6b6bcc,#ff3b3b55);
-  border-radius:150px 150px 0 0;
+  border-radius:300px 300px 0 0;
   top:0;
 }
-.heart::before { left:150px; transform: rotate(-45deg); transform-origin: 0 100%; }
+.heart::before { left:300px; transform: rotate(-45deg); transform-origin: 0 100%; }
 .heart::after { left:0; transform: rotate(45deg); transform-origin: 100% 100%; }
 
 /* ===== SECTIONS ===== */
@@ -132,44 +136,32 @@ const likes = document.getElementById("likes");
 window.addEventListener("scroll", () => {
   const y = window.scrollY;
 
-  // HERO fades out immediately after scrolling down 50px
-  if (y > 50) {
-    hero.classList.add("hidden");
-  } else {
-    hero.classList.remove("hidden");
-  }
+  // HERO fades out quickly after 50px scroll
+  hero.style.opacity = y > 50 ? 0 : 1;
 
-  // MOON follows scroll for about section
-  if (y > 100 && y < 600) {
+  // MOON for about section
+  if (y > 100 && y < 650) {
     moon.style.opacity = "0.75";
-    moon.style.transform = `translate(${y * 0.8}px, ${-y * 0.6}px)`;
+    moon.style.transform = `translate(${y * 1}px, ${-y * 0.5}px)`; // bigger movement
   } else {
     moon.style.opacity = "0";
     moon.style.transform = "translate(0,0)";
   }
 
   // ABOUT fades in/out
-  if (y > 200 && y < 650) {
-    about.classList.add("visible");
-  } else {
-    about.classList.remove("visible");
-  }
+  about.style.opacity = (y > 200 && y < 700) ? 1 : 0;
 
   // HEART for likes section
-  if (y > 700 && y < 1150) {
+  if (y > 750 && y < 1250) {
     heart.style.opacity = "0.7";
-    heart.style.transform = `translate(${(y - 700)}px, ${-(y - 700) * 0.6}px)`;
+    heart.style.transform = `translate(${(y - 750)}px, ${-(y - 750) * 0.5}px)`;
   } else {
     heart.style.opacity = "0";
     heart.style.transform = "translate(0,0)";
   }
 
   // LIKES fades in/out
-  if (y > 760 && y < 1250) {
-    likes.classList.add("visible");
-  } else {
-    likes.classList.remove("visible");
-  }
+  likes.style.opacity = (y > 800 && y < 1300) ? 1 : 0;
 });
 </script>
 
