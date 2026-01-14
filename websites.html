@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Links</title>
+
   <style>
     * {
       margin: 0;
@@ -15,40 +16,39 @@
       background-color: #000;
       color: #fff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
+      overflow-y: auto; /* ✅ scrolling enabled */
     }
 
     .container {
-      position: absolute;
-      top: 58%; /* ⬅️ moved down from 30% */
-      left: 50%;
-      transform: translate(-50%, -50%);
+      max-width: 900px;
+      margin: 80px auto;
       text-align: center;
+      padding: 0 20px;
     }
 
     h1 {
       font-size: 2.8rem;
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: riseUpFast 1s ease 1.2s forwards;
+      margin-bottom: 2rem;
       text-transform: uppercase;
+      opacity: 0;
+      animation: riseUpFast 1s ease forwards;
     }
 
+    /* 🔥 GRID LAYOUT */
     .buttons-wrapper {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 35px;
-      align-items: center;
+      justify-items: center;
       opacity: 0;
-      animation: riseUp 1s ease 2.2s forwards;
+      animation: riseUp 1s ease 0.6s forwards;
     }
 
     .button-group {
       display: flex;
       flex-direction: column;
       align-items: center;
-      position: relative;
     }
 
     .web-button {
@@ -62,7 +62,6 @@
       transition: all 0.3s ease;
       width: 240px;
       text-align: center;
-      cursor: pointer;
     }
 
     .web-button:hover {
@@ -80,6 +79,7 @@
       transition: opacity 0.3s ease, transform 0.3s ease;
       transform: translateY(5px);
       pointer-events: none;
+      text-align: center;
     }
 
     .button-group:hover .description {
@@ -88,10 +88,8 @@
     }
 
     .back-button {
-      position: fixed;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
+      display: inline-block;
+      margin: 60px auto 20px;
       background-color: transparent;
       color: white;
       border: 2px solid white;
@@ -99,9 +97,7 @@
       border-radius: 8px;
       text-decoration: none;
       font-size: 1rem;
-      transition: box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-      opacity: 0;
-      animation: fadeInBack 1s ease 3.2s forwards;
+      transition: all 0.3s ease;
     }
 
     .back-button:hover {
@@ -111,56 +107,70 @@
     }
 
     @keyframes riseUpFast {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes riseUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInBack {
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
+
 <body>
+
   <div class="container">
-    <h1>websites</h1>
+    <h1>Websites</h1>
+
     <div class="buttons-wrapper">
+
       <div class="button-group">
-        <a href="https://slidesgen.lovable.app/" target="_blank" class="web-button">Slides Generator AI</a>
+        <a href="https://slidesgen.lovable.app/" target="_blank" class="web-button">
+          Slides Generator AI
+        </a>
         <p class="description">Generate unlimited slides for free — no credits needed.</p>
       </div>
 
       <div class="button-group">
-        <a href="https://gooxe.lovable.app/" target="_blank" class="web-button">Gooxe</a>
+        <a href="https://gooxe.lovable.app/" target="_blank" class="web-button">
+          Gooxe
+        </a>
         <p class="description">A study timer & tracker with interactive animals.</p>
       </div>
 
       <div class="button-group">
-        <a href="https://github.com/EcliqseX/EcliqseX.github.io/tree/main" target="_blank" class="web-button">@Ecliqse/edit</a>
+        <a href="https://github.com/EcliqseX/EcliqseX.github.io/tree/main" target="_blank" class="web-button">
+          @Ecliqse/edit
+        </a>
         <p class="description">Leads back to editing with the Ecliqse website tools.</p>
       </div>
 
       <div class="button-group">
-        <a href="https://pretzl.lovable.app/" target="_blank" class="web-button">Pretzl</a>
+        <a href="https://pretzl.lovable.app/" target="_blank" class="web-button">
+          Pretzl
+        </a>
         <p class="description">Create digital prompt cards with custom designs.</p>
       </div>
 
       <div class="button-group">
-        <a href="https://ecliqsex.github.io/SOLISS/" target="_blank" class="web-button">SOLIS</a>
+        <a href="https://ecliqsex.github.io/SOLISS/" target="_blank" class="web-button">
+          SOLIS
+        </a>
         <p class="description">Fashion brand site featuring links, deals, and drops.</p>
       </div>
 
       <div class="button-group">
-        <a href="https://typefloww.lovable.app/" target="_blank" class="web-button">TypeFlow</a>
+        <a href="https://typefloww.lovable.app/" target="_blank" class="web-button">
+          TypeFlow
+        </a>
         <p class="description">Upload PDFs and Word docs — typing test from your files.</p>
       </div>
+
     </div>
+
+    <a href="index.html" class="back-button">← Back to Home</a>
   </div>
 
-  <a href="index.html" class="back-button">← back to home</a>
 </body>
 </html>
