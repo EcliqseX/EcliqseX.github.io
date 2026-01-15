@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>lost in transit</title>
+
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 
@@ -22,11 +23,11 @@ body {
   transform: translate(-50%, -50%);
   text-align: center;
   opacity: 0;
-  animation: fadeIn 1.2s ease forwards;
   transition: opacity 0.8s ease;
   z-index: 10;
 }
 
+.hero.visible { opacity: 1; }
 .hero.hidden {
   opacity: 0;
   pointer-events: none;
@@ -37,7 +38,10 @@ body {
   letter-spacing: 0.4rem;
 }
 
-.hero p { color:#aaa; margin-top:10px; }
+.hero p {
+  color:#aaa;
+  margin-top:10px;
+}
 
 /* ===== BACKGROUND OBJECTS ===== */
 .moon, .heart {
@@ -47,9 +51,9 @@ body {
 }
 
 .moon {
-  width: 1260px;  /* 3x bigger */
+  width: 1260px;
   height: 1260px;
-  bottom: -500px;  /* higher */
+  bottom: -500px;
   left: -500px;
   border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, #ffffffcc, #cfcfcf88 45%, #88888833 65%, transparent 72%);
@@ -59,9 +63,9 @@ body {
 }
 
 .heart {
-  width: 600px;   /* bigger */
+  width: 600px;
   height: 600px;
-  bottom: -200px;  /* higher */
+  bottom: -200px;
   left: -300px;
   z-index: 1;
 }
@@ -76,8 +80,16 @@ body {
   border-radius:300px 300px 0 0;
   top:0;
 }
-.heart::before { left:300px; transform: rotate(-45deg); transform-origin: 0 100%; }
-.heart::after { left:0; transform: rotate(45deg); transform-origin: 100% 100%; }
+.heart::before {
+  left:300px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+.heart::after {
+  left:0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
 
 /* ===== SECTIONS ===== */
 .section {
@@ -89,15 +101,22 @@ body {
 
 .section.visible { opacity:1; }
 
-.section h2 { font-size:2rem; margin-bottom:16px; }
-.section p { max-width:620px; margin:auto; color:#ccc; }
+.section h2 {
+  font-size:2rem;
+  margin-bottom:16px;
+}
+
+.section p {
+  max-width:620px;
+  margin:auto;
+  color:#ccc;
+}
 
 #about { margin-top: 65vh; }
 #likes { margin-top: 30vh; }
-
-@keyframes fadeIn { to { opacity:1; } }
 </style>
 </head>
+
 <body>
 
 <!-- HERO -->
@@ -118,7 +137,7 @@ body {
   </p>
 </section>
 
-<!-- LIKES / INTERESTS -->
+<!-- LIKES -->
 <section class="section" id="likes">
   <h2>likes & interests</h2>
   <p>
@@ -133,35 +152,47 @@ const heart = document.getElementById("heart");
 const about = document.getElementById("about");
 const likes = document.getElementById("likes");
 
+/* HERO fades in on load */
+window.addEventListener("load", () => {
+  hero.classList.add("visible");
+});
+
 window.addEventListener("scroll", () => {
   const y = window.scrollY;
 
-  // HERO fades out quickly after 50px scroll
-  hero.style.opacity = y > 50 ? 0 : 1;
+  const aboutTrigger = about.offsetTop - window.innerHeight * 0.4;
+  const likesTrigger = likes.offsetTop - window.innerHeight * 0.4;
 
-  // MOON for about section
-  if (y > 100 && y < 650) {
+  /* HERO fade out / in */
+  if (y > aboutTrigger) {
+    hero.classList.remove("visible");
+    hero.classList.add("hidden");
+  } else {
+    hero.classList.add("visible");
+    hero.classList.remove("hidden");
+  }
+
+  /* MOON + ABOUT */
+  if (y > aboutTrigger - 150 && y < likesTrigger) {
     moon.style.opacity = "0.75";
-    moon.style.transform = `translate(${y * 1}px, ${-y * 0.5}px)`; // bigger movement
+    moon.style.transform = `translate(${y * 0.8}px, ${-y * 0.4}px)`;
+    about.classList.add("visible");
   } else {
     moon.style.opacity = "0";
     moon.style.transform = "translate(0,0)";
+    about.classList.remove("visible");
   }
 
-  // ABOUT fades in/out
-  about.style.opacity = (y > 200 && y < 700) ? 1 : 0;
-
-  // HEART for likes section
-  if (y > 750 && y < 1250) {
+  /* HEART + LIKES */
+  if (y > likesTrigger - 100) {
     heart.style.opacity = "0.7";
-    heart.style.transform = `translate(${(y - 750)}px, ${-(y - 750) * 0.5}px)`;
+    heart.style.transform = `translate(${(y - likesTrigger)}px, ${-(y - likesTrigger) * 0.5}px)`;
+    likes.classList.add("visible");
   } else {
     heart.style.opacity = "0";
     heart.style.transform = "translate(0,0)";
+    likes.classList.remove("visible");
   }
-
-  // LIKES fades in/out
-  likes.style.opacity = (y > 800 && y < 1300) ? 1 : 0;
 });
 </script>
 
