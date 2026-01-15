@@ -12,7 +12,35 @@ body {
   background: radial-gradient(circle at top, #080808, #000);
   color: #fff;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  min-height: 280vh;
+  min-height: 340vh;
+  overflow-x: hidden;
+}
+
+/* ===== BACKGROUND ===== */
+.bg-fade {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, #00000000, #000000cc);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: 0;
+}
+
+.stairs {
+  position: fixed;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255,255,255,0.03) 0px,
+      rgba(255,255,255,0.03) 20px,
+      transparent 20px,
+      transparent 60px
+    );
+  opacity: 0.25;
+  transition: transform 0.6s ease;
+  z-index: 0;
 }
 
 /* ===== HERO ===== */
@@ -28,26 +56,21 @@ body {
 }
 
 .hero.visible { opacity: 1; }
-.hero.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
+.hero.hidden { opacity: 0; pointer-events:none; }
 
 .hero h1 {
   font-size: 3rem;
   letter-spacing: 0.4rem;
 }
 
-.hero p {
-  color:#aaa;
-  margin-top:10px;
-}
+.hero p { color:#aaa; margin-top:10px; }
 
-/* ===== BACKGROUND OBJECTS ===== */
+/* ===== OBJECTS ===== */
 .moon, .heart {
   position: fixed;
   transition: transform 0.8s ease, opacity 0.8s ease;
   opacity: 0;
+  z-index: 1;
 }
 
 .moon {
@@ -57,39 +80,28 @@ body {
   left: -500px;
   border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, #ffffffcc, #cfcfcf88 45%, #88888833 65%, transparent 72%);
-  filter: blur(0.6px);
   box-shadow: 0 0 150px rgba(255,255,255,0.08);
-  z-index: 1;
 }
 
 .heart {
   width: 600px;
   height: 600px;
-  bottom: -200px;
-  left: -300px;
-  z-index: 1;
+  bottom: -80px;
+  left: -260px;
 }
 
 .heart::before,
 .heart::after {
   content:"";
-  position: absolute;
+  position:absolute;
   width:300px;
   height:480px;
   background: radial-gradient(circle at top,#ff6b6bcc,#ff3b3b55);
   border-radius:300px 300px 0 0;
   top:0;
 }
-.heart::before {
-  left:300px;
-  transform: rotate(-45deg);
-  transform-origin: 0 100%;
-}
-.heart::after {
-  left:0;
-  transform: rotate(45deg);
-  transform-origin: 100% 100%;
-}
+.heart::before { left:300px; transform: rotate(-45deg); transform-origin:0 100%; }
+.heart::after { left:0; transform: rotate(45deg); transform-origin:100% 100%; }
 
 /* ===== SECTIONS ===== */
 .section {
@@ -101,48 +113,79 @@ body {
 
 .section.visible { opacity:1; }
 
-.section h2 {
-  font-size:2rem;
-  margin-bottom:16px;
+#about { margin-top: 70vh; }
+#likes { margin-top: 35vh; }
+
+/* ===== NAV BUTTONS ===== */
+.nav-links {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.section p {
-  max-width:620px;
-  margin:auto;
-  color:#ccc;
+.nav-links.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-#about { margin-top: 65vh; }
-#likes { margin-top: 30vh; }
+.nav-links a {
+  padding: 12px 24px;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.15rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  background: transparent;
+  transition:
+    background 0.3s ease,
+    border 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* ✨ FAINT GREEN GLOW ✨ */
+.nav-links a:hover {
+  border-color: rgba(140, 255, 180, 0.7);
+  background: rgba(140, 255, 180, 0.05);
+  box-shadow:
+    0 0 12px rgba(140, 255, 180, 0.35),
+    0 0 28px rgba(140, 255, 180, 0.15);
+}
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
+<div class="stairs" id="stairs"></div>
+<div class="bg-fade" id="bgFade"></div>
+
 <div class="hero" id="hero">
   <h1>e c l i p s e</h1>
   <p>animator | artist | gamer</p>
 </div>
 
-<!-- BACKGROUND OBJECTS -->
 <div class="moon" id="moon"></div>
 <div class="heart" id="heart"></div>
 
-<!-- ABOUT -->
 <section class="section" id="about">
   <h2>about me</h2>
-  <p>
-    animator, artist, and gamer who enjoys experimenting with motion, visuals, and strange concepts.
-  </p>
+  <p>animator, artist, and gamer who enjoys experimenting with motion and visuals.</p>
 </section>
 
-<!-- LIKES -->
 <section class="section" id="likes">
   <h2>likes & interests</h2>
-  <p>
-    animation, gaming, sound design, visual effects, experimenting with code, and interactive storytelling.
-  </p>
+  <p>animation, gaming, sound design, visual effects, and interactive storytelling.</p>
+
+  <div class="nav-links" id="navLinks">
+    <a href="likes.html">likes</a>
+    <a href="music.html">music</a>
+    <a href="priv.html">notes</a>
+    <a href="websites.html">websites</a>
+  </div>
 </section>
 
 <script>
@@ -151,47 +194,48 @@ const moon = document.getElementById("moon");
 const heart = document.getElementById("heart");
 const about = document.getElementById("about");
 const likes = document.getElementById("likes");
+const stairs = document.getElementById("stairs");
+const bgFade = document.getElementById("bgFade");
+const navLinks = document.getElementById("navLinks");
 
-/* HERO fades in on load */
-window.addEventListener("load", () => {
-  hero.classList.add("visible");
-});
+/* HERO load */
+window.addEventListener("load", () => hero.classList.add("visible"));
 
 window.addEventListener("scroll", () => {
   const y = window.scrollY;
+  const aboutT = about.offsetTop - innerHeight * 0.4;
+  const likesT = likes.offsetTop - innerHeight * 0.4;
 
-  const aboutTrigger = about.offsetTop - window.innerHeight * 0.4;
-  const likesTrigger = likes.offsetTop - window.innerHeight * 0.4;
+  hero.classList.toggle("hidden", y > aboutT);
+  hero.classList.toggle("visible", y <= aboutT);
 
-  /* HERO fade out / in */
-  if (y > aboutTrigger) {
-    hero.classList.remove("visible");
-    hero.classList.add("hidden");
-  } else {
-    hero.classList.add("visible");
-    hero.classList.remove("hidden");
-  }
+  bgFade.style.opacity = Math.min(y / 900, 1);
+  stairs.style.transform = `translateY(${y * 0.15}px)`;
 
-  /* MOON + ABOUT */
-  if (y > aboutTrigger - 150 && y < likesTrigger) {
-    moon.style.opacity = "0.75";
-    moon.style.transform = `translate(${y * 0.8}px, ${-y * 0.4}px)`;
+  if (y > aboutT - 150 && y < likesT) {
+    moon.style.opacity = 0.75;
+    moon.style.transform = `translate(${y * 0.7}px, ${-y * 0.35}px)`;
     about.classList.add("visible");
   } else {
-    moon.style.opacity = "0";
+    moon.style.opacity = 0;
     moon.style.transform = "translate(0,0)";
     about.classList.remove("visible");
   }
 
-  /* HEART + LIKES */
-  if (y > likesTrigger - 100) {
-    heart.style.opacity = "0.7";
-    heart.style.transform = `translate(${(y - likesTrigger)}px, ${-(y - likesTrigger) * 0.5}px)`;
+  if (y > likesT - 150 && y < likesT + 200) {
+    const t = (y - likesT + 150) / 350;
+    heart.style.opacity = 1 - t;
+    heart.style.transform = `translate(${t * 200}px, ${-t * 140}px)`;
     likes.classList.add("visible");
   } else {
-    heart.style.opacity = "0";
+    heart.style.opacity = 0;
     heart.style.transform = "translate(0,0)";
-    likes.classList.remove("visible");
+  }
+
+  if (y > likesT + 120) {
+    navLinks.classList.add("visible");
+  } else {
+    navLinks.classList.remove("visible");
   }
 });
 </script>
