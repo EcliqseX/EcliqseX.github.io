@@ -12,7 +12,7 @@ body {
   background: radial-gradient(circle at top, #080808, #000);
   color: #fff;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  min-height: 340vh;
+  min-height: 320vh;
   overflow-x: hidden;
 }
 
@@ -20,7 +20,7 @@ body {
 .bg-fade {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at top, #00000000, #000000cc);
+  background: radial-gradient(circle at top, #00000000, #000000dd);
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.6s ease;
@@ -39,7 +39,6 @@ body {
       transparent 60px
     );
   opacity: 0.25;
-  transition: transform 0.6s ease;
   z-index: 0;
 }
 
@@ -54,7 +53,6 @@ body {
   transition: opacity 0.8s ease;
   z-index: 10;
 }
-
 .hero.visible { opacity: 1; }
 .hero.hidden { opacity: 0; pointer-events:none; }
 
@@ -62,13 +60,12 @@ body {
   font-size: 3rem;
   letter-spacing: 0.4rem;
 }
-
 .hero p { color:#aaa; margin-top:10px; }
 
 /* ===== OBJECTS ===== */
 .moon, .heart {
   position: fixed;
-  transition: transform 0.8s ease, opacity 0.8s ease;
+  transition: transform 0.9s ease, opacity 0.9s ease;
   opacity: 0;
   z-index: 1;
 }
@@ -80,13 +77,12 @@ body {
   left: -500px;
   border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, #ffffffcc, #cfcfcf88 45%, #88888833 65%, transparent 72%);
-  box-shadow: 0 0 150px rgba(255,255,255,0.08);
 }
 
 .heart {
   width: 600px;
   height: 600px;
-  bottom: -80px;
+  bottom: -40px;
   left: -260px;
 }
 
@@ -98,69 +94,78 @@ body {
   height:480px;
   background: radial-gradient(circle at top,#ff6b6bcc,#ff3b3b55);
   border-radius:300px 300px 0 0;
-  top:0;
 }
-.heart::before { left:300px; transform: rotate(-45deg); transform-origin:0 100%; }
-.heart::after { left:0; transform: rotate(45deg); transform-origin:100% 100%; }
+.heart::before {
+  left:300px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+.heart::after {
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
 
 /* ===== SECTIONS ===== */
 .section {
   text-align:center;
-  padding:100px 20px;
+  padding:120px 20px;
   opacity:0;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.7s ease;
 }
-
 .section.visible { opacity:1; }
 
-#about { margin-top: 70vh; }
-#likes { margin-top: 35vh; }
+#about { margin-top: 75vh; }
+#likes { margin-top: 40vh; }
+#access { margin-top: 60vh; }
 
-/* ===== NAV BUTTONS ===== */
-.nav-links {
-  margin-top: 60px;
+/* ===== ACCESS BUTTONS ===== */
+.access-buttons {
   display: flex;
   justify-content: center;
-  gap: 22px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  gap: 18px;
+  margin-top: 40px;
+  flex-wrap: wrap;
 }
 
-.nav-links.visible {
+.access-buttons a {
+  padding: 12px 28px;
+  border-radius: 999px;
+  border: 1px solid #1aff7a55;
+  color: #caffdf;
+  text-decoration: none;
+  letter-spacing: 0.12em;
+  font-size: 0.85rem;
+  transition: all 0.35s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* FIXED glow */
+.access-buttons a:hover {
+  color: #1aff7a;
+  border-color: #1aff7a;
+  box-shadow:
+    0 0 12px #1aff7a88,
+    0 0 30px #1aff7a44;
+  background: #1aff7a11;
+}
+
+/* fade-in active */
+.access-buttons.visible a {
   opacity: 1;
   transform: translateY(0);
 }
+.access-buttons.visible a:nth-child(1){transition-delay:.1s}
+.access-buttons.visible a:nth-child(2){transition-delay:.2s}
+.access-buttons.visible a:nth-child(3){transition-delay:.3s}
+.access-buttons.visible a:nth-child(4){transition-delay:.4s}
 
-.nav-links a {
-  padding: 12px 24px;
-  border: 1px solid rgba(255,255,255,0.25);
-  color: #fff;
-  text-decoration: none;
-  letter-spacing: 0.15rem;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  background: transparent;
-  transition:
-    background 0.3s ease,
-    border 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-/* ✨ FAINT GREEN GLOW ✨ */
-.nav-links a:hover {
-  border-color: rgba(140, 255, 180, 0.7);
-  background: rgba(140, 255, 180, 0.05);
-  box-shadow:
-    0 0 12px rgba(140, 255, 180, 0.35),
-    0 0 28px rgba(140, 255, 180, 0.15);
-}
 </style>
 </head>
 
 <body>
 
-<div class="stairs" id="stairs"></div>
+<div class="stairs"></div>
 <div class="bg-fade" id="bgFade"></div>
 
 <div class="hero" id="hero">
@@ -178,9 +183,12 @@ body {
 
 <section class="section" id="likes">
   <h2>likes & interests</h2>
-  <p>animation, gaming, sound design, visual effects, and interactive storytelling.</p>
+  <p>animation, gaming, sound design, visual effects, interactive storytelling.</p>
+</section>
 
-  <div class="nav-links" id="navLinks">
+<section class="section" id="access">
+  <h2>access</h2>
+  <div class="access-buttons" id="buttons">
     <a href="likes.html">likes</a>
     <a href="music.html">music</a>
     <a href="priv.html">notes</a>
@@ -194,48 +202,46 @@ const moon = document.getElementById("moon");
 const heart = document.getElementById("heart");
 const about = document.getElementById("about");
 const likes = document.getElementById("likes");
-const stairs = document.getElementById("stairs");
+const access = document.getElementById("access");
+const buttons = document.getElementById("buttons");
 const bgFade = document.getElementById("bgFade");
-const navLinks = document.getElementById("navLinks");
 
-/* HERO load */
 window.addEventListener("load", () => hero.classList.add("visible"));
 
 window.addEventListener("scroll", () => {
-  const y = window.scrollY;
-  const aboutT = about.offsetTop - innerHeight * 0.4;
-  const likesT = likes.offsetTop - innerHeight * 0.4;
+  const y = scrollY;
+  const aboutT = about.offsetTop - innerHeight * 0.45;
+  const likesT = likes.offsetTop - innerHeight * 0.45;
+  const accessT = access.offsetTop - innerHeight * 0.45;
 
   hero.classList.toggle("hidden", y > aboutT);
   hero.classList.toggle("visible", y <= aboutT);
 
   bgFade.style.opacity = Math.min(y / 900, 1);
-  stairs.style.transform = `translateY(${y * 0.15}px)`;
 
-  if (y > aboutT - 150 && y < likesT) {
+  /* Moon */
+  if (y > aboutT - 200 && y < likesT) {
     moon.style.opacity = 0.75;
-    moon.style.transform = `translate(${y * 0.7}px, ${-y * 0.35}px)`;
+    moon.style.transform = `translate(${y * 0.6}px, ${-y * 0.3}px)`;
     about.classList.add("visible");
   } else {
     moon.style.opacity = 0;
-    moon.style.transform = "translate(0,0)";
-    about.classList.remove("visible");
   }
 
-  if (y > likesT - 150 && y < likesT + 200) {
-    const t = (y - likesT + 150) / 350;
-    heart.style.opacity = 1 - t;
-    heart.style.transform = `translate(${t * 200}px, ${-t * 140}px)`;
+  /* HEART stays longer */
+  if (y > likesT - 250 && y < likesT + 600) {
+    const progress = (y - likesT + 250) / 850;
+    heart.style.opacity = 1 - progress;
+    heart.style.transform = `translate(${progress * 200}px, ${-progress * 140}px)`;
     likes.classList.add("visible");
   } else {
     heart.style.opacity = 0;
-    heart.style.transform = "translate(0,0)";
   }
 
-  if (y > likesT + 120) {
-    navLinks.classList.add("visible");
-  } else {
-    navLinks.classList.remove("visible");
+  /* ACCESS buttons */
+  if (y > accessT) {
+    access.classList.add("visible");
+    buttons.classList.add("visible");
   }
 });
 </script>
