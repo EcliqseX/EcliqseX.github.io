@@ -49,17 +49,16 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.8s ease;
   z-index: 10;
 }
-.hero.visible { opacity: 1; }
-.hero.hidden { opacity: 0; pointer-events:none; }
 
 .hero h1 {
   font-size: 3rem;
   letter-spacing: 0.4rem;
 }
+
 .hero p { color:#aaa; margin-top:10px; }
 
 /* ===== OBJECTS ===== */
@@ -95,15 +94,8 @@ body {
   background: radial-gradient(circle at top,#ff6b6bcc,#ff3b3b55);
   border-radius:300px 300px 0 0;
 }
-.heart::before {
-  left:300px;
-  transform: rotate(-45deg);
-  transform-origin: 0 100%;
-}
-.heart::after {
-  transform: rotate(45deg);
-  transform-origin: 100% 100%;
-}
+.heart::before { left:300px; transform: rotate(-45deg); transform-origin: 0 100%; }
+.heart::after { transform: rotate(45deg); transform-origin: 100% 100%; }
 
 /* ===== SECTIONS ===== */
 .section {
@@ -116,7 +108,7 @@ body {
 
 #about { margin-top: 75vh; }
 #likes { margin-top: 40vh; }
-#access { margin-top: 60vh; }
+#access { margin-top: 40vh; }
 
 /* ===== ACCESS BUTTONS ===== */
 .access-buttons {
@@ -140,13 +132,11 @@ body {
   transform: translateY(20px);
 }
 
-/* FIXED glow */
+/* FIXED glow on hover */
 .access-buttons a:hover {
   color: #1aff7a;
   border-color: #1aff7a;
-  box-shadow:
-    0 0 12px #1aff7a88,
-    0 0 30px #1aff7a44;
+  box-shadow: 0 0 12px #1aff7a88, 0 0 30px #1aff7a44;
   background: #1aff7a11;
 }
 
@@ -206,20 +196,23 @@ const access = document.getElementById("access");
 const buttons = document.getElementById("buttons");
 const bgFade = document.getElementById("bgFade");
 
-window.addEventListener("load", () => hero.classList.add("visible"));
-
+/* HERO fade immediately on scroll */
 window.addEventListener("scroll", () => {
   const y = scrollY;
   const aboutT = about.offsetTop - innerHeight * 0.45;
   const likesT = likes.offsetTop - innerHeight * 0.45;
   const accessT = access.offsetTop - innerHeight * 0.45;
 
-  hero.classList.toggle("hidden", y > aboutT);
-  hero.classList.toggle("visible", y <= aboutT);
+  /* HERO opacity starts fading immediately */
+  const fadeEnd = 220;
+  const heroOpacity = Math.max(1 - y / fadeEnd, 0);
+  hero.style.opacity = heroOpacity;
+  hero.style.pointerEvents = heroOpacity === 0 ? "none" : "auto";
 
+  /* BACKGROUND fade */
   bgFade.style.opacity = Math.min(y / 900, 1);
 
-  /* Moon */
+  /* MOON animation */
   if (y > aboutT - 200 && y < likesT) {
     moon.style.opacity = 0.75;
     moon.style.transform = `translate(${y * 0.6}px, ${-y * 0.3}px)`;
@@ -228,7 +221,7 @@ window.addEventListener("scroll", () => {
     moon.style.opacity = 0;
   }
 
-  /* HEART stays longer */
+  /* HEART lingers longer */
   if (y > likesT - 250 && y < likesT + 600) {
     const progress = (y - likesT + 250) / 850;
     heart.style.opacity = 1 - progress;
@@ -238,7 +231,7 @@ window.addEventListener("scroll", () => {
     heart.style.opacity = 0;
   }
 
-  /* ACCESS buttons */
+  /* ACCESS buttons fade in */
   if (y > accessT) {
     access.classList.add("visible");
     buttons.classList.add("visible");
