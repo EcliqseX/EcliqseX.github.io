@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>lost in transit</title>
+<title>Eclipse</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
@@ -100,6 +100,43 @@ header .role {
   opacity: 0.65;
 }
 
+/* ===== HANGING CAT ===== */
+.cat-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: -80px;
+  margin-bottom: 100px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.cat-wrapper.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cat-wrapper img {
+  width: 220px;
+  max-width: 60vw;
+  border-radius: 18px;
+  animation: catFloat 4s ease-in-out infinite;
+  transition: all 0.4s ease;
+}
+
+.cat-wrapper img:hover {
+  box-shadow:
+    0 0 14px rgba(26,255,122,0.45),
+    0 0 32px rgba(26,255,122,0.25);
+  transform: scale(1.05);
+}
+
+@keyframes catFloat {
+  0%   { transform: translateY(0) rotate(-1deg); }
+  50%  { transform: translateY(12px) rotate(1deg); }
+  100% { transform: translateY(0) rotate(-1deg); }
+}
+
 /* ===== SECTIONS ===== */
 section {
   padding: 6rem 10%;
@@ -111,7 +148,7 @@ section {
   gap: 2rem;
 }
 
-/* ===== GLASS CARD ===== */
+/* ===== CARDS ===== */
 .card {
   background: var(--glass);
   backdrop-filter: var(--blur);
@@ -193,9 +230,11 @@ html {
 <div class="stars"></div>
 
 <nav>
-  <a href="website.html">Website</a>
+  <a href="websites.html">Website</a>
   <a href="likes.html">Likes</a>
   <a href="priv.html">Notes</a>
+  <a href="bookmark.html">Bookmarks</a>
+  <a href="games.html">Games</a>
 </nav>
 
 <header>
@@ -203,6 +242,11 @@ html {
   <p>Minimal · Modern · Cosmic</p>
   <div class="role">Gamer · Animator · Aspiring Artist</div>
 </header>
+
+<!-- CAT GOES HERE -->
+<div class="cat-wrapper" id="cat">
+  <img src="images/catbox.png" alt="hanging cat">
+</div>
 
 <section>
   <div class="grid">
@@ -233,6 +277,7 @@ html {
 
 <script>
 const cards = document.querySelectorAll('.card');
+const cat = document.getElementById('cat');
 
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -241,6 +286,7 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.2 });
 
 cards.forEach(card => observer.observe(card));
+observer.observe(cat);
 </script>
 
 </body>
