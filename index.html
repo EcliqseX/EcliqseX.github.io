@@ -5,238 +5,242 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>lost in transit</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --glow: #1aff7a;
+  --glass: rgba(255,255,255,0.08);
+  --blur: blur(18px);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
 
 body {
-  background: radial-gradient(circle at top, #080808, #000);
-  color: #fff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  min-height: 320vh;
+  background: #000;
+  color: #eaeaf0;
   overflow-x: hidden;
 }
 
 /* ===== BACKGROUND ===== */
-.bg-fade {
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at top, #00000000, #000000dd);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  z-index: 0;
-}
-
-.stairs {
+.bg {
   position: fixed;
   inset: 0;
   background:
-    repeating-linear-gradient(
-      -45deg,
-      rgba(255,255,255,0.03) 0px,
-      rgba(255,255,255,0.03) 20px,
-      transparent 20px,
-      transparent 60px
-    );
-  opacity: 0.25;
-  z-index: 0;
+    linear-gradient(rgba(0,0,0,0.6), rgba(10,5,25,0.85)),
+    url("e126eb1c-858d-412f-9cda-1be77b848078.png") center/cover;
+  z-index: -3;
 }
 
-/* ===== HERO ===== */
-.hero {
+.stars {
   position: fixed;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  opacity: 1;
-  transition: opacity 0.8s ease;
+  inset: 0;
+  background: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.18;
+  z-index: -2;
+}
+
+/* ===== NAV ===== */
+nav {
+  position: fixed;
+  top: 22px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
   z-index: 10;
 }
 
-.hero h1 {
-  font-size: 3rem;
-  letter-spacing: 0.4rem;
+nav a {
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  text-decoration: none;
+  font-size: 0.85rem;
+  color: #fff;
+  transition: all 0.35s ease;
 }
 
-.hero p { color:#aaa; margin-top:10px; }
-
-/* ===== OBJECTS ===== */
-.moon, .heart {
-  position: fixed;
-  transition: transform 0.9s ease, opacity 0.9s ease;
-  opacity: 0;
-  z-index: 1;
+nav a:hover {
+  box-shadow: 0 0 12px rgba(26,255,122,0.45),
+              0 0 28px rgba(26,255,122,0.25);
+  transform: translateY(-2px);
 }
 
-.moon {
-  width: 1260px;
-  height: 1260px;
-  bottom: -500px;
-  left: -500px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #ffffffcc, #cfcfcf88 45%, #88888833 65%, transparent 72%);
+/* ===== HERO ===== */
+header {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.heart {
-  width: 600px;
-  height: 600px;
-  bottom: -40px;
-  left: -260px;
+header h1 {
+  font-size: clamp(3.2rem, 8vw, 6rem);
+  font-weight: 800;
+  letter-spacing: 0.18em;
 }
 
-.heart::before,
-.heart::after {
-  content:"";
-  position:absolute;
-  width:300px;
-  height:480px;
-  background: radial-gradient(circle at top,#ff6b6bcc,#ff3b3b55);
-  border-radius:300px 300px 0 0;
+header p {
+  margin-top: 1rem;
+  opacity: 0.8;
 }
-.heart::before { left:300px; transform: rotate(-45deg); transform-origin: 0 100%; }
-.heart::after { transform: rotate(45deg); transform-origin: 100% 100%; }
+
+header .role {
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+  opacity: 0.65;
+}
 
 /* ===== SECTIONS ===== */
-.section {
-  text-align:center;
-  padding:120px 20px;
-  opacity:0;
-  transition: opacity 0.7s ease;
-}
-.section.visible { opacity:1; }
-
-#about { margin-top: 75vh; }
-#likes { margin-top: 40vh; }
-#access { margin-top: 40vh; }
-
-/* ===== ACCESS BUTTONS ===== */
-.access-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  margin-top: 40px;
-  flex-wrap: wrap;
+section {
+  padding: 6rem 10%;
 }
 
-.access-buttons a {
-  padding: 12px 28px;
-  border-radius: 999px;
-  border: 1px solid #1aff7a55;
-  color: #caffdf;
-  text-decoration: none;
-  letter-spacing: 0.12em;
-  font-size: 0.85rem;
-  transition: all 0.35s ease;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+/* ===== GLASS CARD ===== */
+.card {
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  border-radius: 22px;
+  padding: 2.2rem;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(50px);
+  transition: all 0.9s ease;
 }
 
-/* FIXED glow on hover */
-.access-buttons a:hover {
-  color: #1aff7a;
-  border-color: #1aff7a;
-  box-shadow: 0 0 12px #1aff7a88, 0 0 30px #1aff7a44;
-  background: #1aff7a11;
-}
-
-/* fade-in active */
-.access-buttons.visible a {
+.card.show {
   opacity: 1;
   transform: translateY(0);
 }
-.access-buttons.visible a:nth-child(1){transition-delay:.1s}
-.access-buttons.visible a:nth-child(2){transition-delay:.2s}
-.access-buttons.visible a:nth-child(3){transition-delay:.3s}
-.access-buttons.visible a:nth-child(4){transition-delay:.4s}
 
+.card:hover {
+  box-shadow: 0 0 14px rgba(26,255,122,0.45),
+              0 0 30px rgba(26,255,122,0.25);
+}
+
+/* ===== IMAGE PANELS ===== */
+.image-panel {
+  width: 100%;
+  height: 180px;
+  border-radius: 16px;
+  margin-bottom: 1.2rem;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.4s ease;
+}
+
+.image-panel:hover {
+  box-shadow: 0 0 16px rgba(26,255,122,0.5);
+  transform: scale(1.03);
+}
+
+/* ===== BUTTON ===== */
+.btn {
+  display: inline-block;
+  margin-top: 1.2rem;
+  padding: 12px 24px;
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.28),
+    rgba(255,255,255,0.05)
+  );
+  backdrop-filter: blur(20px);
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.35s ease;
+}
+
+.btn:hover {
+  box-shadow: 0 0 12px rgba(26,255,122,0.5),
+              0 0 28px rgba(26,255,122,0.25);
+  transform: translateY(-3px) scale(1.04);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  letter-spacing: 0.2em;
+}
+
+/* ===== SMOOTH ===== */
+html {
+  scroll-behavior: smooth;
+}
 </style>
 </head>
 
 <body>
 
-<div class="stairs"></div>
-<div class="bg-fade" id="bgFade"></div>
+<div class="bg"></div>
+<div class="stars"></div>
 
-<div class="hero" id="hero">
-  <h1>e c l i p s e</h1>
-  <p>animator | artist | gamer</p>
-</div>
+<nav>
+  <a href="website.html">Website</a>
+  <a href="likes.html">Likes</a>
+  <a href="priv.html">Notes</a>
+</nav>
 
-<div class="moon" id="moon"></div>
-<div class="heart" id="heart"></div>
+<header>
+  <h1>ECLIPSE</h1>
+  <p>Minimal · Modern · Cosmic</p>
+  <div class="role">Gamer · Animator · Aspiring Artist</div>
+</header>
 
-<section class="section" id="about">
-  <h2>about me</h2>
-  <p>animator, artist, and gamer who enjoys experimenting with motion and visuals.</p>
-</section>
+<section>
+  <div class="grid">
 
-<section class="section" id="likes">
-  <h2>likes & interests</h2>
-  <p>animation, gaming, sound design, visual effects, interactive storytelling.</p>
-</section>
+    <div class="card">
+      <div class="image-panel" style="background-image:url('e126eb1c-858d-412f-9cda-1be77b848078.png')"></div>
+      <h3>About Me</h3>
+      <p>I create through animation, design, and motion-driven storytelling inspired by atmosphere and emotion.</p>
+    </div>
 
-<section class="section" id="access">
-  <h2>access</h2>
-  <div class="access-buttons" id="buttons">
-    <a href="likes.html">likes</a>
-    <a href="music.html">music</a>
-    <a href="priv.html">notes</a>
-    <a href="websites.html">websites</a>
+    <div class="card">
+      <div class="image-panel" style="background-image:url('e126eb1c-858d-412f-9cda-1be77b848078.png')"></div>
+      <h3>Creations</h3>
+      <p>Games, animations, UI concepts, visual experiments, and interactive ideas.</p>
+      <a class="btn" href="website.html">View Work</a>
+    </div>
+
+    <div class="card">
+      <div class="image-panel" style="background-image:url('e126eb1c-858d-412f-9cda-1be77b848078.png')"></div>
+      <h3>Design Style</h3>
+      <p>Minimal, dark, calm — motion that feels intentional, not loud.</p>
+    </div>
+
   </div>
 </section>
 
+<footer>@ecliqse</footer>
+
 <script>
-const hero = document.getElementById("hero");
-const moon = document.getElementById("moon");
-const heart = document.getElementById("heart");
-const about = document.getElementById("about");
-const likes = document.getElementById("likes");
-const access = document.getElementById("access");
-const buttons = document.getElementById("buttons");
-const bgFade = document.getElementById("bgFade");
+const cards = document.querySelectorAll('.card');
 
-/* HERO fade immediately on scroll */
-window.addEventListener("scroll", () => {
-  const y = scrollY;
-  const aboutT = about.offsetTop - innerHeight * 0.45;
-  const likesT = likes.offsetTop - innerHeight * 0.45;
-  const accessT = access.offsetTop - innerHeight * 0.45;
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    entry.target.classList.toggle('show', entry.isIntersecting);
+  });
+}, { threshold: 0.2 });
 
-  /* HERO opacity starts fading immediately */
-  const fadeEnd = 220;
-  const heroOpacity = Math.max(1 - y / fadeEnd, 0);
-  hero.style.opacity = heroOpacity;
-  hero.style.pointerEvents = heroOpacity === 0 ? "none" : "auto";
-
-  /* BACKGROUND fade */
-  bgFade.style.opacity = Math.min(y / 900, 1);
-
-  /* MOON animation */
-  if (y > aboutT - 200 && y < likesT) {
-    moon.style.opacity = 0.75;
-    moon.style.transform = `translate(${y * 0.6}px, ${-y * 0.3}px)`;
-    about.classList.add("visible");
-  } else {
-    moon.style.opacity = 0;
-  }
-
-  /* HEART lingers longer */
-  if (y > likesT - 250 && y < likesT + 600) {
-    const progress = (y - likesT + 250) / 850;
-    heart.style.opacity = 1 - progress;
-    heart.style.transform = `translate(${progress * 200}px, ${-progress * 140}px)`;
-    likes.classList.add("visible");
-  } else {
-    heart.style.opacity = 0;
-  }
-
-  /* ACCESS buttons fade in */
-  if (y > accessT) {
-    access.classList.add("visible");
-    buttons.classList.add("visible");
-  }
-});
+cards.forEach(card => observer.observe(card));
 </script>
 
 </body>
