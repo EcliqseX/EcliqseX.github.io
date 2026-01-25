@@ -1,1 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Games</title>
+
+  <style>
+    /* ===== RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    /* ===== BODY ===== */
+    body {
+      background: #0a0a0a;
+      color: #e6e6e6;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      width: 100%;
+      max-width: 700px;
+      text-align: center;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    h1 {
+      font-size: 3rem;
+      letter-spacing: 3px;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: slideDown 0.8s ease forwards;
+    }
+
+    /* ===== BUTTON GRID ===== */
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    /* ===== BUTTON STYLE ===== */
+    .btn {
+      text-decoration: none;
+      color: #e6e6e6;
+      padding: 18px;
+      border: 1px solid #1f1f1f;
+      background: #0f0f0f;
+      letter-spacing: 1px;
+      font-size: 1.1rem;
+      transition: 
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border 0.25s ease,
+        color 0.25s ease;
+    }
+
+    .btn:hover {
+      color: #00ff7f;
+      border: 1px solid #00ff7f;
+      box-shadow: 
+        0 0 10px rgba(0, 255, 127, 0.6),
+        0 0 25px rgba(0, 255, 127, 0.4);
+      transform: translateY(-4px);
+    }
+
+    /* ===== BACK BUTTON ===== */
+    .back {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.95rem;
+      opacity: 0.7;
+      transition: opacity 0.3s ease, color 0.3s ease;
+    }
+
+    .back:hover {
+      opacity: 1;
+      color: #00ff7f;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>GAMES</h1>
+
+    <div class="buttons">
+      <a class="btn" href="https://fvtcxryf.ipv64.net/d" target="_blank">Game Portal I</a>
+      <a class="btn" href="https://j.xj2.workers.dev/" target="_blank">Game Portal II</a>
+      <a class="btn" href="https://sites.google.com/studentmail.conroeisd.net/edu/home" target="_blank">Game Portal III</a>
+    </div>
+
+    <a class="back" href="https://ecliqsex.github.io/index.html">← Back to Home</a>
+  </div>
+
+</body>
+</html>
 
