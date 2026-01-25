@@ -1,293 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eclipse</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eclipse the creative</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-<style>
-:root {
-  --glow: #1aff7a;
-  --glass: rgba(255,255,255,0.08);
-  --blur: blur(18px);
-}
+  <style>
+    :root {
+      --glow: #1aff7a;
+      --glass: rgba(255,255,255,0.08);
+      --blur: blur(18px);
+    }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
 
-body {
-  background: #000;
-  color: #eaeaf0;
-  overflow-x: hidden;
-}
+    body {
+      background: #000;
+      color: #eaeaf0;
+      overflow-x: hidden;
+    }
 
-/* ===== BACKGROUND ===== */
-.bg {
-  position: fixed;
-  inset: 0;
-  background:
-    linear-gradient(rgba(0,0,0,0.6), rgba(10,5,25,0.85)),
-    url("e126eb1c-858d-412f-9cda-1be77b848078.png") center/cover;
-  z-index: -3;
-}
+    /* ===== BACKGROUND ===== */
+    .bg {
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(rgba(0,0,0,0.6), rgba(10,5,25,0.85)),
+        url("e126eb1c-858d-412f-9cda-1be77b848078.png") center/cover;
+      z-index: -3;
+    }
 
-.stars {
-  position: fixed;
-  inset: 0;
-  background: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.18;
-  z-index: -2;
-}
+    .stars {
+      position: fixed;
+      inset: 0;
+      background: url("https://grainy-gradients.vercel.app/noise.svg");
+      opacity: 0.18;
+      z-index: -2;
+    }
 
-/* ===== NAV ===== */
-nav {
-  position: fixed;
-  top: 22px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  z-index: 10;
-}
+    /* ===== NAV ===== */
+    nav {
+      position: fixed;
+      top: 22px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      z-index: 10;
+    }
 
-nav a {
-  padding: 10px 20px;
-  border-radius: 999px;
-  background: var(--glass);
-  backdrop-filter: var(--blur);
-  text-decoration: none;
-  font-size: 0.85rem;
-  color: #fff;
-  transition: all 0.35s ease;
-}
+    nav a {
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: var(--glass);
+      backdrop-filter: var(--blur);
+      text-decoration: none;
+      font-size: 0.85rem;
+      color: #fff;
+      transition: all 0.35s ease;
+    }
 
-nav a:hover {
-  box-shadow: 0 0 12px rgba(26,255,122,0.45),
-              0 0 28px rgba(26,255,122,0.25);
-  transform: translateY(-2px);
-}
+    nav a:hover {
+      box-shadow:
+        0 0 12px rgba(26,255,122,0.45),
+        0 0 28px rgba(26,255,122,0.25);
+      transform: translateY(-2px);
+    }
 
-/* ===== HERO ===== */
-header {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+    /* ===== HERO ===== */
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
 
-header h1 {
-  font-size: clamp(3.2rem, 8vw, 6rem);
-  font-weight: 800;
-  letter-spacing: 0.18em;
-}
+    header h1 {
+      font-size: clamp(3.2rem, 8vw, 6rem);
+      font-weight: 800;
+      letter-spacing: 0.18em;
+    }
 
-header p {
-  margin-top: 1rem;
-  opacity: 0.8;
-}
+    header p {
+      margin-top: 1rem;
+      opacity: 0.8;
+    }
 
-header .role {
-  margin-top: 0.6rem;
-  font-size: 0.95rem;
-  opacity: 0.65;
-}
+    header .role {
+      margin-top: 0.6rem;
+      font-size: 0.95rem;
+      opacity: 0.65;
+    }
 
-/* ===== HANGING CAT ===== */
-.cat-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: -80px;
-  margin-bottom: 100px;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.9s ease, transform 0.9s ease;
-}
+    /* ===== HANGING CAT ===== */
+    .cat-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: -80px;
+      margin-bottom: 100px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
 
-.cat-wrapper.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .cat-wrapper.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.cat-wrapper img {
-  width: 220px;
-  max-width: 60vw;
-  border-radius: 18px;
-  animation: catFloat 4s ease-in-out infinite;
-  transition: all 0.4s ease;
-}
+    .cat-wrapper img {
+      width: 220px;
+      max-width: 60vw;
+      border-radius: 18px;
+      animation: catFloat 4s ease-in-out infinite;
+      transition: all 0.4s ease;
+    }
 
-.cat-wrapper img:hover {
-  box-shadow:
-    0 0 14px rgba(26,255,122,0.45),
-    0 0 32px rgba(26,255,122,0.25);
-  transform: scale(1.05);
-}
+    .cat-wrapper img:hover {
+      box-shadow:
+        0 0 14px rgba(26,255,122,0.45),
+        0 0 32px rgba(26,255,122,0.25);
+      transform: scale(1.05);
+    }
 
-@keyframes catFloat {
-  0%   { transform: translateY(0) rotate(-1deg); }
-  50%  { transform: translateY(12px) rotate(1deg); }
-  100% { transform: translateY(0) rotate(-1deg); }
-}
+    @keyframes catFloat {
+      0%   { transform: translateY(0) rotate(-1deg); }
+      50%  { transform: translateY(12px) rotate(1deg); }
+      100% { transform: translateY(0) rotate(-1deg); }
+    }
 
-/* ===== SECTIONS ===== */
-section {
-  padding: 6rem 10%;
-}
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 6rem 10%;
+    }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
 
-/* ===== CARDS ===== */
-.card {
-  background: var(--glass);
-  backdrop-filter: var(--blur);
-  border-radius: 22px;
-  padding: 2.2rem;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.9s ease;
-}
+    /* ===== CARDS ===== */
+    .card {
+      background: var(--glass);
+      backdrop-filter: var(--blur);
+      border-radius: 22px;
+      padding: 2.2rem;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.9s ease;
+    }
 
-.card.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.card:hover {
-  box-shadow: 0 0 14px rgba(26,255,122,0.45),
-              0 0 30px rgba(26,255,122,0.25);
-}
+    .card:hover {
+      box-shadow:
+        0 0 14px rgba(26,255,122,0.45),
+        0 0 30px rgba(26,255,122,0.25);
+    }
 
-/* ===== IMAGE PANELS ===== */
-.image-panel {
-  width: 100%;
-  height: 180px;
-  border-radius: 16px;
-  margin-bottom: 1.2rem;
-  background-size: cover;
-  background-position: center;
-  transition: all 0.4s ease;
-}
+    /* ===== IMAGE PANELS ===== */
+    .image-panel {
+      width: 100%;
+      height: 180px;
+      border-radius: 16px;
+      margin-bottom: 1.2rem;
+      background-size: cover;
+      background-position: center;
+      transition: all 0.4s ease;
+    }
 
-.image-panel:hover {
-  box-shadow: 0 0 16px rgba(26,255,122,0.5);
-  transform: scale(1.03);
-}
+    .image-panel:hover {
+      box-shadow: 0 0 16px rgba(26,255,122,0.5);
+      transform: scale(1.03);
+    }
 
-/* ===== BUTTON ===== */
-.btn {
-  display: inline-block;
-  margin-top: 1.2rem;
-  padding: 12px 24px;
-  border-radius: 14px;
-  background: linear-gradient(
-    135deg,
-    rgba(255,255,255,0.28),
-    rgba(255,255,255,0.05)
-  );
-  backdrop-filter: blur(20px);
-  text-decoration: none;
-  color: #fff;
-  transition: all 0.35s ease;
-}
+    /* ===== FIXED IMAGE SIZES ===== */
+    .image-panel.about {
+      height: 140px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
 
-.btn:hover {
-  box-shadow: 0 0 12px rgba(26,255,122,0.5),
-              0 0 28px rgba(26,255,122,0.25);
-  transform: translateY(-3px) scale(1.04);
-}
+    .image-panel.about:hover {
+      transform: none;
+    }
 
-/* ===== FOOTER ===== */
-footer {
-  padding: 2rem;
-  text-align: center;
-  font-size: 0.8rem;
-  opacity: 0.6;
-  letter-spacing: 0.2em;
-}
+    .image-panel.websites {
+      height: 160px;
+      background-size: 90%;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
 
-/* ===== SMOOTH ===== */
-html {
-  scroll-behavior: smooth;
-}
-</style>
+    /* ===== BUTTON ===== */
+    .btn {
+      display: inline-block;
+      margin-top: 1.2rem;
+      padding: 12px 24px;
+      border-radius: 14px;
+      background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.28),
+        rgba(255,255,255,0.05)
+      );
+      backdrop-filter: blur(20px);
+      text-decoration: none;
+      color: #fff;
+      transition: all 0.35s ease;
+    }
+
+    .btn:hover {
+      box-shadow:
+        0 0 12px rgba(26,255,122,0.5),
+        0 0 28px rgba(26,255,122,0.25);
+      transform: translateY(-3px) scale(1.04);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      opacity: 0.6;
+      letter-spacing: 0.2em;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="bg"></div>
+  <div class="stars"></div>
 
-<div class="bg"></div>
-<div class="stars"></div>
+  <nav>
+    <a href="moosic.html">Music</a>
+    <a href="likes.html">Likes</a>
+    <a href="priv.html">Updates</a>
+    <a href="bookmark.html">Bookmarks</a>
+    <a href="games.html">Games</a>
+  </nav>
 
-<nav>
-  <a href="moosic.html">Music</a>
-  <a href="likes.html">Likes</a>
-  <a href="priv.html">Updates</a>
-  <a href="bookmark.html">Bookmarks</a>
-  <a href="games.html">Games</a>
-</nav>
+  <header>
+    <h1>ECLIPSE</h1>
+    <p>tiredeclipse · 28jinj · misclick0</p>
+    <div class="role">Gamer · Animator · Designer</div>
+  </header>
 
-<header>
-  <h1>ECLIPSE</h1>
-  <p>tiredeclipse · 28jinj · misclick0</p>
-  <div class="role">Gamer · Animator ·  Designer</div>
-</header>
-
-<!-- CAT GOES HERE -->
-<div class="cat-wrapper" id="cat">
-  <img src="images/catbox.png" alt="hanging cat">
-</div>
-
-<section>
-  <div class="grid">
-
-    <div class="card">
-      <div class="image-panel" style="background-image:url('images/catmouth.png')"></div>
-      <h3>About Me</h3>
-      <p>I create through animation, design, and motion-driven storytelling inspired by atmosphere and emotion.</p>
-    </div>
-
-    <div class="card">
-      <div class="image-panel" style="background-image:url('images/fox.png')"></div>
-      <h3>Websites</h3>
-      <p>A collection of my interactive experiements, and useful tools for daily use.</p>
-      <a class="btn" href="websites.html">View Work</a>
-    </div>
-
-    <div class="card">
-      <div class="image-panel" style="background-image:url('e126eb1c-858d-412f-9cda-1be77b848078.png')"></div>
-      <h3>Interests</h3>
-      <p>Showcase of my interest along with works of art made during the years. Creating motion that feels intentional, but not loud.</p>
-    </div>
-
+  <div class="cat-wrapper" id="cat">
+    <img src="images/catbox.png" alt="hanging cat">
   </div>
-</section>
 
-<footer>@ecliqse</footer>
+  <section>
+    <div class="grid">
 
-<script>
-const cards = document.querySelectorAll('.card');
-const cat = document.getElementById('cat');
+      <div class="card">
+        <div class="image-panel about" style="background-image:url('images/catmouth.png')"></div>
+        <h3>About Me</h3>
+        <p>I create through animation, design, and motion-driven storytelling inspired by atmosphere and emotion.</p>
+      </div>
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    entry.target.classList.toggle('show', entry.isIntersecting);
-  });
-}, { threshold: 0.2 });
+      <div class="card">
+        <div class="image-panel websites" style="background-image:url('images/fox.png')"></div>
+        <h3>Websites</h3>
+        <p>A collection of my interactive experiements, and useful tools for daily use.</p>
+        <a class="btn" href="websites.html">View Work</a>
+      </div>
 
-cards.forEach(card => observer.observe(card));
-observer.observe(cat);
-</script>
+      <div class="card">
+        <div class="image-panel" style="background-image:url('e126eb1c-858d-412f-9cda-1be77b848078.png')"></div>
+        <h3>Interests</h3>
+        <p>Showcase of my interest along with works of art made during the years. Creating motion that feels intentional, but not loud.</p>
+      </div>
 
+    </div>
+  </section>
+
+  <footer>@ecliqse</footer>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    const cat = document.getElementById('cat');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle('show', entry.isIntersecting);
+      });
+    }, { threshold: 0.2 });
+
+    cards.forEach(card => observer.observe(card));
+    observer.observe(cat);
+  </script>
 </body>
 </html>
