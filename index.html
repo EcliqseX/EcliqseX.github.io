@@ -96,7 +96,7 @@
       width: 100%;
     }
 
-    /* ===== SEARCH BUTTON ===== */
+    /* ===== SEARCH BAR ===== */
     .navbar .search input {
       display: none;
     }
@@ -147,9 +147,9 @@
       display: flex;
       justify-content: center;
       margin-top: -80px;
-      margin-bottom: 100px;
+      margin-bottom: 80px; /* slightly less */
       opacity: 0;
-      transform: translateY(40px);
+      transform: translateY(30px); /* less float */
       transition: opacity 0.9s ease, transform 0.9s ease;
     }
 
@@ -162,7 +162,7 @@
       width: 220px;
       max-width: 60vw;
       border-radius: 18px;
-      animation: catFloat 4s ease-in-out infinite;
+      animation: catFloat 3s ease-in-out infinite; /* slightly faster/smaller */
       transition: all 0.4s ease;
     }
 
@@ -175,7 +175,7 @@
 
     @keyframes catFloat {
       0%   { transform: translateY(0) rotate(-1deg); }
-      50%  { transform: translateY(12px) rotate(1deg); }
+      50%  { transform: translateY(8px) rotate(1deg); }
       100% { transform: translateY(0) rotate(-1deg); }
     }
 
@@ -187,7 +187,7 @@
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
+      gap: 1.5rem; /* reduced gap */
     }
 
     /* ===== GLASSMORPHIC 3D CARDS OUTSIDE ===== */
@@ -213,10 +213,10 @@
       box-shadow: 0 20px 60px rgba(0,0,0,0.55);
     }
 
-    /* ===== IMAGE PANELS ===== */
+    /* ===== IMAGE PANELS (FORCED SAME SIZE) ===== */
     .image-panel {
       width: 100%;
-      height: 180px;
+      height: 160px; /* same height for all */
       border-radius: 16px;
       margin-bottom: 1.2rem;
       background-size: cover;
@@ -228,22 +228,6 @@
     .image-panel:hover {
       transform: scale(1.05);
       box-shadow: inset 0 0 24px rgba(255,255,255,0.1), 0 8px 24px rgba(0,0,0,0.3);
-    }
-
-    .image-panel.about {
-      height: 140px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-
-    .image-panel.about:hover { transform: scale(1.03); }
-
-    .image-panel.websites {
-      height: 160px;
-      background-size: 90%;
-      background-repeat: no-repeat;
-      background-position: center;
     }
 
     /* ===== NAV-LIKE BUTTONS FOR CARDS ===== */
@@ -303,7 +287,10 @@
     </ul>
 
     <div class="search">
-      <button onclick="window.open('https://www.google.com','_blank')">🔍</button>
+      <form onsubmit="event.preventDefault(); window.open('https://www.google.com/search?q=site:ecliqsex.github.io+' + encodeURIComponent(this.querySelector('input').value),'_blank')">
+        <input type="text" placeholder="Search...">
+        <button type="submit">🔍</button>
+      </form>
     </div>
   </nav>
 
@@ -321,22 +308,22 @@
     <div class="grid">
 
       <div class="card">
-        <div class="image-panel about" style="background-image:url('images/catmouth.png')"></div>
+        <div class="image-panel" style="background-image:url('images/catmouth.png')"></div>
         <h3>About Me</h3>
-        <p>I create through animation, design, and motion-driven storytelling inspired by atmosphere and emotion.</p>
+        <p>I create through animation, design, and motion-driven storytelling inspired by atmosphere and emotion. I enjoy exploring visual storytelling, motion design, and creating interactive experiences that evoke mood, focus, and curiosity in viewers.</p>
       </div>
 
       <div class="card">
-        <div class="image-panel websites" style="background-image:url('images/fox.png')"></div>
+        <div class="image-panel" style="background-image:url('images/fox.png')"></div>
         <h3>Websites</h3>
-        <p>A collection of my interactive experiments, and useful tools for daily use.</p>
+        <p>A collection of my interactive experiments and useful tools for daily use. Explore projects that demonstrate design, animation, and coding skills.</p>
         <a class="card-btn" href="websites.html">View Work</a>
       </div>
 
       <div class="card">
-        <div class="image-panel" style="background-image:url('e126eb1c-858d-412f-9cda-1be77b848078.png')"></div>
+        <div class="image-panel" style="background-image:url('images/interests.png')"></div>
         <h3>Interests</h3>
-        <p>Showcase of my interest along with works of art made during the years. Creating motion that feels intentional, but not loud.</p>
+        <p>Showcase of my interests along with works of art made during the years. Creating motion that feels intentional, but not loud, from sketches to full animations.</p>
         <a class="card-btn" href="https://ecliqsex.github.io/art.html">View Art</a>
       </div>
 
