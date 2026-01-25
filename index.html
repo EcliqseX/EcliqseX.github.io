@@ -96,24 +96,6 @@
       width: 100%;
     }
 
-    /* ===== SEARCH BAR ===== */
-    .navbar .search input {
-      display: none;
-    }
-
-    .navbar .search button {
-      background: none;
-      border: none;
-      font-size: 1.3rem;
-      cursor: pointer;
-      color: #fff;
-      transition: transform 0.2s ease;
-    }
-
-    .navbar .search button:hover {
-      transform: scale(1.2);
-    }
-
     /* ===== HERO ===== */
     header {
       height: 100vh;
@@ -122,7 +104,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding-top: 80px; /* leave space for navbar */
+      padding-top: 80px;
     }
 
     header h1 {
@@ -147,9 +129,9 @@
       display: flex;
       justify-content: center;
       margin-top: -80px;
-      margin-bottom: 80px; /* slightly less */
+      margin-bottom: 80px;
       opacity: 0;
-      transform: translateY(30px); /* less float */
+      transform: translateY(30px);
       transition: opacity 0.9s ease, transform 0.9s ease;
     }
 
@@ -162,7 +144,7 @@
       width: 220px;
       max-width: 60vw;
       border-radius: 18px;
-      animation: catFloat 3s ease-in-out infinite; /* slightly faster/smaller */
+      animation: catFloat 3s ease-in-out infinite;
       transition: all 0.4s ease;
     }
 
@@ -187,10 +169,10 @@
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem; /* reduced gap */
+      gap: 1.5rem;
     }
 
-    /* ===== GLASSMORPHIC 3D CARDS OUTSIDE ===== */
+    /* ===== GLASSMORPHIC 3D CARDS ===== */
     .card {
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(24px);
@@ -213,10 +195,10 @@
       box-shadow: 0 20px 60px rgba(0,0,0,0.55);
     }
 
-    /* ===== IMAGE PANELS (FORCED SAME SIZE) ===== */
+    /* ===== IMAGE PANELS (SAME SIZE, ADJUST IMAGE INSIDE) ===== */
     .image-panel {
       width: 100%;
-      height: 160px; /* same height for all */
+      height: 160px;
       border-radius: 16px;
       margin-bottom: 1.2rem;
       background-size: cover;
@@ -277,7 +259,6 @@
   <!-- NAVBAR -->
   <nav class="navbar">
     <div class="logo">ECLIPSE</div>
-
     <ul class="nav-links">
       <li><a href="https://ecliqsex.github.io/cat.html">Cats</a></li>
       <li><a href="https://ecliqsex.github.io/art.html">Art</a></li>
@@ -285,13 +266,6 @@
       <li><a href="bookmark.html">Bookmarks</a></li>
       <li><a href="games.html">Games</a></li>
     </ul>
-
-    <div class="search">
-      <form onsubmit="event.preventDefault(); window.open('https://www.google.com/search?q=site:ecliqsex.github.io+' + encodeURIComponent(this.querySelector('input').value),'_blank')">
-        <input type="text" placeholder="Search...">
-        <button type="submit">🔍</button>
-      </form>
-    </div>
   </nav>
 
   <header>
@@ -307,21 +281,39 @@
   <section>
     <div class="grid">
 
+      <!-- About Me Card -->
       <div class="card">
-        <div class="image-panel" style="background-image:url('images/catmouth.png')"></div>
+        <div class="image-panel" style="
+          background-image:url('images/catmouth.png');
+          background-size:70%;
+          background-position:center 60%;
+          background-repeat:no-repeat;
+        "></div>
         <h3>About Me</h3>
         <p>I create through animation, design, and motion-driven storytelling inspired by atmosphere and emotion. I enjoy exploring visual storytelling, motion design, and creating interactive experiences that evoke mood, focus, and curiosity in viewers.</p>
       </div>
 
+      <!-- Websites Card -->
       <div class="card">
-        <div class="image-panel" style="background-image:url('images/fox.png')"></div>
+        <div class="image-panel" style="
+          background-image:url('images/fox.png');
+          background-size:60%;
+          background-position:center 65%;
+          background-repeat:no-repeat;
+        "></div>
         <h3>Websites</h3>
         <p>A collection of my interactive experiments and useful tools for daily use. Explore projects that demonstrate design, animation, and coding skills.</p>
         <a class="card-btn" href="websites.html">View Work</a>
       </div>
 
+      <!-- Interests Card -->
       <div class="card">
-        <div class="image-panel" style="background-image:url('images/interests.png')"></div>
+        <div class="image-panel" style="
+          background-image:url('images/interests.png');
+          background-size:70%;
+          background-position:center 60%;
+          background-repeat:no-repeat;
+        "></div>
         <h3>Interests</h3>
         <p>Showcase of my interests along with works of art made during the years. Creating motion that feels intentional, but not loud, from sketches to full animations.</p>
         <a class="card-btn" href="https://ecliqsex.github.io/art.html">View Art</a>
