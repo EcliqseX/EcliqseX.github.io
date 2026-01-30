@@ -1,1 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Cats</title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --glow: #1aff7a;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+
+    body {
+      background: #000;
+      color: #eaeaf0;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ===== BACKGROUND ===== */
+    .bg {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(rgba(0,0,0,0.55), rgba(10,5,25,0.85));
+      z-index: -3;
+    }
+
+    /* ===== PARTICLES ===== */
+    .particle {
+      position: absolute;
+      top: -50px;
+      font-size: 12px;
+      opacity: 0.15;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity:0.15; }
+      100% { transform: translateY(120vh) rotate(360deg); opacity:0.15; }
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 4%;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(16px);
+      z-index: 20;
+    }
+
+    .navbar .logo { font-weight:800; font-size:1.4rem; }
+    .navbar .nav-links { list-style:none; display:flex; gap:2rem; }
+    .navbar .nav-links li a {
+      text-decoration:none;
+      color:#fff;
+      position: relative;
+      font-weight:500;
+      padding:0.3rem 0;
+    }
+    .navbar .nav-links li a::after {
+      content:'';
+      position:absolute;
+      width:0%; height:2px; left:0; bottom:0;
+      background-color: var(--glow);
+      transition: width 0.3s ease;
+    }
+    .navbar .nav-links li a:hover::after { width:100%; }
+
+    /* ===== HEADER ===== */
+    header {
+      height: 25vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding-top: 80px;
+    }
+    header h1 { font-size: clamp(2.5rem,6vw,4rem); font-weight:800; letter-spacing:0.1em; }
+    header p { opacity:0.7; margin-top:0.5rem; }
+
+    /* ===== BACK BUTTON ===== */
+    .back-btn {
+      display:inline-block;
+      margin: 1.5rem 4%;
+      padding:0.5rem 1rem;
+      border:1px solid var(--glow);
+      color:#fff;
+      text-decoration:none;
+      border-radius:10px;
+      transition: 0.3s;
+    }
+    .back-btn:hover {
+      background: var(--glow);
+      color:#000;
+    }
+
+    /* ===== IMAGE CAROUSEL ===== */
+    .carousel-container {
+      position: relative;
+      width: 90%;
+      max-width: 900px;
+      margin: 2rem auto;
+      overflow: hidden;
+      border-radius: 22px;
+      backdrop-filter: blur(18px);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel-track img {
+      width: 100%;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.3);
+      border:none;
+      color:#1aff7a;
+      font-size:2rem;
+      cursor:pointer;
+      padding:0.3rem 0.7rem;
+      border-radius:50%;
+      z-index:10;
+      transition: 0.3s;
+    }
+
+    .carousel-btn:hover { background: rgba(0,0,0,0.6); }
+
+    .prev { left:10px; }
+    .next { right:10px; }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">ECLIPSE</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="art.html">Art</a></li>
+      <li><a href="games.html">Games</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>My Cats</h1>
+    <p>Some cute friends in my life 🐾</p>
+  </header>
+
+  <a href="index.html" class="back-btn">← Back</a>
+
+  <!-- CAROUSEL -->
+  <div class="carousel-container">
+    <button class="carousel-btn prev">‹</button>
+    <div class="carousel-track">
+      <img src="images/cats/cat1.png" alt="Cat 1">
+      <img src="images/cats/cat2.png" alt="Cat 2">
+      <img src="images/cats/cat3.png" alt="Cat 3">
+      <img src="images/cats/cat4.png" alt="Cat 4">
+    </div>
+    <button class="carousel-btn next">›</button>
+  </div>
+
+  <script>
+    // ===== PARTICLES =====
+    const particleIcons = ["🐟","💀","🦴"];
+    for(let i=0;i<30;i++){
+      const p = document.createElement('div');
+      p.className='particle';
+      p.style.left = Math.random()*100 + 'vw';
+      p.style.animationDuration = (5+Math.random()*7)+'s';
+      p.textContent = Math.random()<0.5 ? 'meow' : particleIcons[Math.floor(Math.random()*particleIcons.length)];
+      document.body.appendChild(p);
+    }
+
+    // ===== CAROUSEL =====
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    let index = 0;
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    prevBtn.addEventListener('click', ()=>{
+      index = (index - 1 + slides.length) % slides.length;
+      updateCarousel();
+    });
+
+    nextBtn.addEventListener('click', ()=>{
+      index = (index + 1) % slides.length;
+      updateCarousel();
+    });
+  </script>
+</body>
+</html>
