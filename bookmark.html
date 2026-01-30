@@ -2,20 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bookmarks</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
-    /* Reset & base */
+    :root {
+      --glow: #1aff7a;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
     }
 
     body {
       background-color: #000;
-      color: #fff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #eaeaf0;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -29,38 +33,37 @@
       font-size: 3rem;
       margin-bottom: 2rem;
       opacity: 0;
-      animation: fadeInMoveDown 1.5s ease forwards;
+      animation: fadeInMoveDown 1.2s ease forwards;
       text-align: center;
+      font-weight: 800;
+      letter-spacing: 1px;
       user-select: none;
     }
 
     @keyframes fadeInMoveDown {
-      0% {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     /* Bookmark container */
     .bookmark-box {
-      background: rgba(255 255 255 / 0.05);
-      border: 1px solid rgba(255 255 255 / 0.15);
-      border-radius: 12px;
-      padding: 1.5rem 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 22px;
+      padding: 2rem 2.5rem;
       width: 100%;
       max-width: 600px;
-      box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
-      animation: fadeIn 2s ease 1s forwards;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+      backdrop-filter: blur(18px);
       opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s ease 0.3s forwards;
     }
 
-    @keyframes fadeIn {
+    @keyframes fadeInUp {
       to {
         opacity: 1;
+        transform: translateY(0);
       }
     }
 
@@ -69,21 +72,23 @@
     }
 
     .bookmark-box li {
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
     }
 
     .bookmark-box a {
-      color: #00ff9d;
+      color: var(--glow);
       text-decoration: none;
       font-weight: 600;
       font-size: 1.1rem;
-      transition: color 0.3s ease;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
     }
 
     .bookmark-box a:hover,
     .bookmark-box a:focus {
       color: #00cc7a;
       text-decoration: underline;
+      text-shadow: 0 0 8px var(--glow);
+      outline: none;
     }
 
     /* Back button */
@@ -91,20 +96,19 @@
       align-self: flex-start;
       margin-bottom: 2rem;
       background: none;
-      border: 2px solid #00ff9d;
-      color: #00ff9d;
+      border: 2px solid var(--glow);
+      color: var(--glow);
       font-weight: 600;
       padding: 0.5rem 1rem;
-      border-radius: 8px;
+      border-radius: 12px;
       cursor: pointer;
       transition: box-shadow 0.3s ease, filter 0.3s ease;
       user-select: none;
     }
 
-    /* Glow on hover — no movement or color change */
     .back-button:hover,
     .back-button:focus {
-      box-shadow: 0 0 12px #00ff9d, 0 0 24px #00ff9d;
+      box-shadow: 0 0 12px var(--glow), 0 0 24px var(--glow);
       filter: brightness(1.3);
       outline: none;
     }
@@ -119,6 +123,7 @@
     <ul>
       <li><a href="https://docs.google.com/document/d/1HxOlWG4Txe6yZbflb4dupC0Vv07KsbMcerRKqa5sckE/edit?usp=sharing" target="_blank" rel="noopener">Bookmark Hub</a></li>
       <li><a href="https://ubghub.org" target="_blank" rel="noopener">UBGHub</a></li>
+      <!-- Add more bookmarks here -->
     </ul>
   </div>
 </body>
